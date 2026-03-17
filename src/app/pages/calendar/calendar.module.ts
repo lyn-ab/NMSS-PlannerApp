@@ -13,8 +13,8 @@ import { CalendarPage } from './calendar.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CalendarPageRoutingModule
+    CalendarPageRoutingModule,
+    CalendarPage
   ],
-  declarations: [CalendarPage]
 })
 export class CalendarPageModule {}
