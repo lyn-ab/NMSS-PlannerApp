@@ -1,20 +1,20 @@
 :root {
   /* Main Colors */
-  --ion-color-primary: #AFAFEF;      /* Muted Lilac */
-  --ion-color-secondary: #d9e5cf;    /* Soft Sage */
-  --ion-color-tertiary: #FAD6E7;     /* Soft Pink */
+  --ion-color-primary: #a8a8ec;      /* Muted Lilac */
+  --ion-color-secondary: #c2e1a9;    /* Soft Sage */
+  --ion-color-tertiary: #e282af;     /* Soft Pink */
 
   /* App Surfaces */
   --ion-background-color: #020202;   /* Pitch Black */
-  --ion-item-background: #FFFFFF;    /* White cards for high contrast */
+  --ion-item-background: #f2edf4;    /* White cards for high contrast */
 
   /* Text Colors */
-  --ion-text-color: #d9e5cf;         /* Soft white for text on dark background */
+  --ion-text-color: #c2e1a9;         /* Soft white for text on dark background */
 
   /* Custom Palette for easy use */
   --palette-black: #020202;
-  --palette-lilac: #AFAFEF;
-  --palette-mint: #d9e5cf;
-  --palette-white: #FFFFFF;
+  --palette-lilac: #a8a8ec;
+  --palette-mint: #c2e1a9;
+  --palette-white: #f2edf4;
   --palette-pink: #FAD6E7;
 }

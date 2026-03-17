@@ -1,29 +1,30 @@
+/* Ensure the overall background is your Pitch Black */
+:host {
+  display: block;
+  background-color: #020202;
+}
+
 .greeting-section {
   margin-bottom: 30px;
-  padding: 10px;
+  padding: 20px;
 
   h1 {
     font-weight: 700;
-    color: #E8F0E2; // Soft Sage for the main greeting
+    color: #E8F0E2; // Soft Sage
     font-size: 2.2rem;
+    margin-bottom: 15px;
   }
 
-  .action-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  ion-button {
+    --background: #AFAFEF; // Lilac
+    --color: #020202;      // Black text
+    --border-radius: 12px;
+    font-weight: 600;
+  }
 
-    ion-button {
-      --background: #AFAFEF; // Lilac button
-      --color: #020202;      // Black text for high contrast
-      --border-radius: 12px;
-      flex: 1;
-    }
-
-    ion-fab-button {
-      --background: #FAD6E7; // Pink accent for the mic
-      --color: #020202;
-    }
+  ion-fab-button {
+    --background: #FAD6E7; // Pink accent
+    --color: #020202;
   }
 }
 
@@ -31,87 +32,168 @@
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 20px;
+  padding: 0 10px 20px 10px;
   &::-webkit-scrollbar { display: none; }
 }
 
 .task-card {
   min-width: 85%;
   scroll-snap-align: center;
-  border-radius: 24px; // Extra rounded for "comfy" feel
-  background: #FFFFFF; // Stark white card surface for readability
+  border-radius: 24px;
+  background: #FFFFFF !important; // Force the White card
   margin: 0 10px;
-  padding: 10px;
-  box-shadow: 0 8px 20px rgba(175, 175, 239, 0.2); // Soft lilac glow shadow
+  color: #020202;
+  box-shadow: 0 8px 20px rgba(175, 175, 239, 0.15);
 
-  ion-card-title {
-    color: #020202;
-    font-weight: 800;
+  .card-inner {
+    padding: 18px;
   }
+}
 
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+/* Matching your new layout classes */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 
-  .task-type-badge {
-    background: #E8F0E2; // Mint/Sage background
-    color: #020202;      // Black text
-    padding: 6px 14px;
-    border-radius: 10px;
+  .type-badge {
     display: flex;
     align-items: center;
     gap: 6px;
+    color: #AFAFEF; // Lilac
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: lowercase;
+  }
+}
+
+.task-title {
+  margin: 5px 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #020202;
+}
+
+.upcoming-tag {
+  color: #AFAFEF;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.footer-row {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #020202;
+
+  ion-icon { color: #AFAFEF; }
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+
+  button {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 12px;
     font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-weight: 700;
   }
 
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-    border-top: 1px solid #f0f0f0;
-    padding-top: 10px;
+  .btn-micro {
+    background: #E8F0E2; // Soft Sage
+    color: #020202;
+  }
+
+  .btn-skip {
+    background: #e282af; // The Pink you liked
+    color: #FFFFFF;
   }
 }
 
 .milestone-section {
-  margin-top: 30px;
   padding: 20px;
   text-align: center;
 
   ion-progress-bar {
     height: 12px;
     border-radius: 10px;
-    --progress-background: #AFAFEF; // Lilac progress
-    --buffer-background: rgba(232, 240, 226, 0.3); // Sage buffer
+    --progress-background: #AFAFEF;
+    --buffer-background: rgba(232, 240, 226, 0.2);
   }
 
   .affirmation-text {
     margin-top: 15px;
     font-style: italic;
-    color: #AFAFEF; // Soft lilac text
+    color: #AFAFEF;
   }
 }
 
-.clickable {
-  cursor: pointer;
+/* Add this to your home.page.scss */
+
+.tag-row {
+  margin-bottom: 8px; // Space before the button
+}
+
+.button-action-row {
+  margin-bottom: 12px; // Space before the footer
+
+  .btn-micro {
+    background: #E8F0E2; // Your Sage
+    color: #020202;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+
+    &:active { opacity: 0.7; }
+  }
+}
+
+.footer-row {
+  padding-top: 10px;
+  border-top: 1px solid #f5f5f5; // Subtle line to separate actions
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  color: #AFAFEF; // Lilac link color
+}
 
-  &:active {
-    opacity: 0.6;
-  }
+.btn-skip {
+  background: #b85c86; // The Pink
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
 
-  p {
-    margin: 0;
-    text-decoration: underline;
-    font-weight: 500;
-  }
+  &:active { opacity: 0.7; }
+}
+
+.task-card {
+  position: relative;
+  z-index: 10; /* Lifts the card up */
+  pointer-events: auto !important; /* Forces clickability */
+}
+
+.button-group button {
+  position: relative;
+  z-index: 20; /* Lifts the button even higher */
 }

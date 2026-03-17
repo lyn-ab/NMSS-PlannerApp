@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from "@ionic/angular";
+import { IonicModule, ToastController } from "@ionic/angular";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccessibilityService } from '../../services/accessibility';
@@ -31,13 +31,29 @@ export class HomePage implements OnInit {
     }
   ];
 
-  constructor(private accessibility: AccessibilityService) {
+  constructor(private accessibility: AccessibilityService, private toastController: ToastController) {
 
    }
 
   ngOnInit() {
   }
 
+
+  async skipTask(task: any) {
+    console.log('Skipping: '+ task.title);
+    const toast = await this.toastController.create({
+      message: `Task '${task.title}' skipped. Taking a break is okay!`,
+      duration: 3000,
+      position: 'bottom',
+      cssClass: 'custom-skip-toast', // We will style this below
+      buttons: [
+        {
+          text: 'Dismiss',
+          role: 'cancel'
+        }]
+    });
+    await toast.present();
+  }
 
   playGreeting() {
     // Just call the service!
@@ -52,11 +68,6 @@ export class HomePage implements OnInit {
   generateSteps(task: any) {
     // This is where your AI logic will eventually hook in
     console.log('Generating steps for:', task.title);
-  }
-
-  skipTask(task: any) {
-    // Logic to discard task or send email
-    alert('Task skipped. Taking a break is okay!');
   }
 
   openLink(url: string) {

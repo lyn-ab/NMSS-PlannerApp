@@ -12,8 +12,8 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="greeting-section">
     <h1>How are you feeling today?</h1>
-    <div class="action-buttons">
-      <ion-button (click)="openSymptomLogger()" expand="block" shape="round">
+    <div class="action-buttons" style="display: flex; align-items: center; gap: 10px;">
+      <ion-button (click)="openSymptomLogger()" shape="round" style="flex: 1;">
         Log Symptoms
       </ion-button>
       <ion-fab-button size="small" color="secondary">
@@ -27,34 +27,37 @@
     <div class="task-slider">
       @for (task of tasks; track task.title) {
         <ion-card class="task-card">
-          <ion-card-header>
-            <div class="card-top">
-              <div class="task-type-badge">
+          <div class="card-inner">
+            <div class="header-row">
+              <div class="type-badge">
                 <ion-icon [name]="task.icon"></ion-icon>
                 <span>{{ task.type }}</span>
               </div>
-              <ion-button fill="clear" color="medium">
-                <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
-              </ion-button>
+              <ion-icon name="ellipsis-horizontal" class="dots-icon"></ion-icon>
             </div>
-            <ion-card-title>{{ task.title }}</ion-card-title>
-          </ion-card-header>
 
-          <ion-card-content>
-            <ion-button fill="outline" size="small" (click)="generateSteps(task)">
-              Generate Micro-steps
-            </ion-button>
+            <h2 class="task-title">{{ task.title }}</h2>
 
-            <div class="card-footer">
-              <div class="link-info clickable" (click)="openLink(task.link)">
-                <ion-icon name="link-outline"></ion-icon>
-                <p>{{ task.locationName }}</p>
+            <div class="tag-row">
+              <span class="upcoming-tag">#upcoming</span>
+            </div>
+
+            <div class="button-action-row">
+              <button class="btn-micro" (click)="generateSteps(task)">
+                <ion-icon name="sparkles-outline"></ion-icon>
+                Generate microsteps
+              </button>
+            </div>
+
+            <div class="footer-row">
+              <div class="location-info">
+                <ion-icon name="location-sharp"></ion-icon>
+                <span>{{ task.locationName }}</span>
               </div>
-              <ion-button fill="clear" color="danger" (click)="skipTask(task)">
-                Skip
-              </ion-button>
+
+              <button class="btn-skip" (click)="skipTask(task)">Skip</button>
             </div>
-          </ion-card-content>
+          </div>
         </ion-card>
       } @empty {
         <p class="ion-padding ion-text-center">No tasks for today. Rest up!</p>
