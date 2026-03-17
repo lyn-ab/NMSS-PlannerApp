@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from "@ionic/angular";
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { AccessibilityService } from '../../services/accessibility';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  imports: [IonicModule],
+  imports: [IonicModule, CommonModule, FormsModule],
 })
 export class HomePage implements OnInit {
   progressValue = 0.4; // Example: 40% complete
@@ -28,9 +31,17 @@ export class HomePage implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private accessibility: AccessibilityService) {
+
+   }
 
   ngOnInit() {
+  }
+
+
+  playGreeting() {
+    // Just call the service!
+    this.accessibility.speak("Hello! How are you feeling today?", "en-US");
   }
 
   openSymptomLogger() {

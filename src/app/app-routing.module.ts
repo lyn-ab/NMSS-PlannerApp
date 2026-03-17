@@ -50,7 +50,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
+  loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage)
   },
   {
     path: 'add-task',
