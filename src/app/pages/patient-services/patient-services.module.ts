@@ -13,8 +13,8 @@ import { PatientServicesPage } from './patient-services.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PatientServicesPageRoutingModule
+    PatientServicesPageRoutingModule,
+    PatientServicesPage
   ],
-  declarations: [PatientServicesPage]
 })
 export class PatientServicesPageModule {}

@@ -1,13 +1,70 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>Good Morning!</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="greeting-section">
+    <h1>How are you feeling today?</h1>
+    <div class="action-buttons">
+      <ion-button (click)="openSymptomLogger()" expand="block" shape="round">
+        Log Symptoms
+      </ion-button>
+      <ion-fab-button size="small" color="secondary">
+        <ion-icon name="mic"></ion-icon>
+      </ion-fab-button>
+    </div>
+  </div>
+
+  <div class="task-section">
+    <h3>Your Tasks</h3>
+    <div class="task-slider">
+      @for (task of tasks; track task.title) {
+        <ion-card class="task-card">
+          <ion-card-header>
+            <div class="card-top">
+              <div class="task-type-badge">
+                <ion-icon [name]="task.icon"></ion-icon>
+                <span>{{ task.type }}</span>
+              </div>
+              <ion-button fill="clear" color="medium">
+                <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+              </ion-button>
+            </div>
+            <ion-card-title>{{ task.title }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-button fill="outline" size="small" (click)="generateSteps(task)">
+              Generate Micro-steps
+            </ion-button>
+
+            <div class="card-footer">
+              <div class="link-info clickable" (click)="openLink(task.link)">
+                <ion-icon name="link-outline"></ion-icon>
+                <p>{{ task.locationName }}</p>
+              </div>
+              <ion-button fill="clear" color="danger" (click)="skipTask(task)">
+                Skip
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      } @empty {
+        <p class="ion-padding ion-text-center">No tasks for today. Rest up!</p>
+      }
+    </div>
+  </div>
+
+  <div class="milestone-section">
+    <h4>Daily Progress</h4>
+    <ion-progress-bar [value]="progressValue"></ion-progress-bar>
+    <p class="affirmation-text">{{ affirmation }}</p>
+  </div>
 </ion-content>

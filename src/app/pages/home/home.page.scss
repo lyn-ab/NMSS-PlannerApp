@@ -1,0 +1,75 @@
+.greeting-section {
+  margin-bottom: 30px;
+  h1 { font-weight: 700; color: var(--ion-color-primary); }
+  .action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.task-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.task-card {
+  min-width: 85%;
+  scroll-snap-align: center;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .task-type-badge {
+    background: var(--ion-color-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    border-top: 1px solid var(--ion-color-light);
+    padding-top: 10px;
+  }
+}
+
+.milestone-section {
+  margin-top: 20px;
+  text-align: center;
+  .affirmation-text { font-style: italic; color: var(--ion-color-medium); }
+}
+
+.clickable {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ion-color-primary); // Make it blue like a link
+
+  &:active {
+    opacity: 0.6; // Visual feedback when tapped
+  }
+
+  p {
+    margin: 0;
+    text-decoration: underline;
+  }
+}

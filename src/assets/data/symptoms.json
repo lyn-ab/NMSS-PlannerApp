@@ -1,0 +1,677 @@
+{
+  "symptoms": [
+    {
+    "id": "s1",
+    "category": "Digestive",
+    "names": {
+      "en": "Nausea",
+      "ar": "غثيان",
+      "fr": "Nausée",
+      "hi": "जी मिचलाना",
+      "tl": "Nalulula",
+      "ur": "متلی",
+      "sw": "Kichefu",
+      "cn": "恶心",
+      "jp": "吐き気",
+      "pt": "Náusea",
+      "es": "Náusea",
+      "de": "Übelkeit",
+      "it": "Nausea",
+      "ru": "Тошнота",
+      "ko": "메스꺼움"
+    }
+  },
+  {
+    "id": "s2",
+    "category": "Respiratory",
+    "names": {
+      "en": "Cough",
+      "ar": "سعال",
+      "fr": "Toux",
+      "hi": "खांसी",
+      "tl": "Ubo",
+      "ur": "کھانسی",
+      "sw": "Kikohozi",
+      "cn": "咳嗽",
+      "jp": "咳",
+      "pt": "Tosse",
+      "es": "Tos",
+      "de": "Husten",
+      "it": "Tosse",
+      "ru": "Кашель",
+      "ko": "기침"
+    }
+  },
+  {
+    "id": "s3",
+    "category": "Neurological",
+    "names": {
+      "en": "Headache",
+      "ar": "صداع",
+      "fr": "Mal de tête",
+      "hi": "सिरदर्द",
+      "tl": "Sakit ng ulo",
+      "ur": "سر درد",
+      "sw": "Maumivu ya kichwa",
+      "cn": "头痛",
+      "jp": "頭痛",
+      "pt": "Dor de cabeça",
+      "es": "Dolor de cabeza",
+      "de": "Kopfschmerzen",
+      "it": "Mal di testa",
+      "ru": "Головная боль",
+      "ko": "두통"
+    }
+  },
+  {
+    "id": "s4",
+    "category": "Musculoskeletal",
+    "names": {
+      "en": "Joint Pain",
+      "ar": "ألم المفاصل",
+      "fr": "Douleur articulaire",
+      "hi": "जोड़ों का दर्द",
+      "tl": "Sakit sa kasukasuan",
+      "ur": "جوڑوں کا درد",
+      "sw": "Maumivu ya viungo",
+      "cn": "关节痛",
+      "jp": "関節痛",
+      "pt": "Dor nas articulações",
+      "es": "Dolor articular",
+      "de": "Gelenkschmerzen",
+      "it": "Dolore articolare",
+      "ru": "Боль в суставах",
+      "ko": "관절 통증"
+    }
+  },
+  {
+    "id": "s5",
+    "category": "Cardiovascular",
+    "names": {
+      "en": "Chest Pain",
+      "ar": "ألم في الصدر",
+      "fr": "Douleur thoracique",
+      "hi": "छाती का दर्द",
+      "tl": "Sakit sa dibdib",
+      "ur": "چھاتی کا درد",
+      "sw": "Maumivu ya kifua",
+      "cn": "胸痛",
+      "jp": "胸痛",
+      "pt": "Dor no peito",
+      "es": "Dolor en el pecho",
+      "de": "Brustschmerzen",
+      "it": "Dolore al petto",
+      "ru": "Боль в груди",
+      "ko": "가슴 통증"
+    }
+  },
+  {
+    "id": "s6",
+    "category": "Dermatological",
+    "names": {
+      "en": "Rash",
+      "ar": "طفح جلدي",
+      "fr": "Éruption cutanée",
+      "hi": "दाने",
+      "tl": "Pantalon",
+      "ur": "خارش",
+      "sw": "Upele",
+      "cn": "皮疹",
+      "jp": "発疹",
+      "pt": "Erupção cutânea",
+      "es": "Erupción cutánea",
+      "de": "Hautausschlag",
+      "it": "Eruzione cutanea",
+      "ru": "Сыпь",
+      "ko": "발진"
+    }
+  },
+  {
+    "id": "s7",
+    "category": "General",
+    "names": {
+      "en": "Fatigue",
+      "ar": "إرهاق",
+      "fr": "Fatigue",
+      "hi": "थकान",
+      "tl": "Pagod",
+      "ur": "تھکن",
+      "sw": "Uchovu",
+      "cn": "疲劳",
+      "jp": "疲労",
+      "pt": "Fadiga",
+      "es": "Fatiga",
+      "de": "Müdigkeit",
+      "it": "Affaticamento",
+      "ru": "Усталость",
+      "ko": "피로"
+    }
+  },
+  {
+    "id": "s8",
+    "category": "Gastrointestinal",
+    "names": {
+      "en": "Diarrhea",
+      "ar": "إسهال",
+      "fr": "Diarrhée",
+      "hi": "दस्त",
+      "tl": "Pagtatae",
+      "ur": "اسہال",
+      "sw": "Matapishi",
+      "cn": "腹泻",
+      "jp": "下痢",
+      "pt": "Diarreia",
+      "es": "Diarrea",
+      "de": "Durchfall",
+      "it": "Diarrea",
+      "ru": "Диарея",
+      "ko": "설사"
+    }
+  },
+  {
+    "id": "s9",
+    "category": "Ophthalmological",
+    "names": {
+      "en": "Blurred Vision",
+      "ar": "رؤية ضبابية",
+      "fr": "Vision floue",
+      "hi": "धुंधली दृष्टि",
+      "tl": "Malabong paningin",
+      "ur": "دھندلی نظر",
+      "sw": "Maono machafu",
+      "cn": "视力模糊",
+      "jp": "視力のぼやけ",
+      "pt": "Visão embaçada",
+      "es": "Visión borrosa",
+      "de": "Verschwommenes Sehen",
+      "it": "Visione offuscata",
+      "ru": "Затуманенное зрение",
+      "ko": "흐릿한 시야"
+    }
+  },
+  {
+    "id": "s10",
+    "category": "Psychological",
+    "names": {
+      "en": "Anxiety",
+      "ar": "قلق",
+      "fr": "Anxiété",
+      "hi": "चिंता",
+      "tl": "Pag-aalala",
+      "ur": "پریشانی",
+      "sw": "Wasiwasi",
+      "cn": "焦虑",
+      "jp": "不安",
+      "pt": "Ansiedade",
+      "es": "Ansiedad",
+      "de": "Angst",
+      "it": "Ansia",
+      "ru": "Тревога",
+      "ko": "불안"
+    }
+  },
+  {
+    "id": "s11",
+    "category": "Endocrine",
+    "names": {
+      "en": "Weight Gain",
+      "ar": "زيادة الوزن",
+      "fr": "Prise de poids",
+      "hi": "वजन बढ़ना",
+      "tl": "Pagtaas ng timbang",
+      "ur": "وزن میں اضافہ",
+      "sw": "Kuzidi uzito",
+      "cn": "体重增加",
+      "jp": "体重増加",
+      "pt": "Ganho de peso",
+      "es": "Aumento de peso",
+      "de": "Gewichtszunahme",
+      "it": "Aumento di peso",
+      "ru": "Набор веса",
+      "ko": "체중 증가"
+    }
+  },
+  {
+    "id": "s12",
+    "category": "Hematological",
+    "names": {
+      "en": "Easy Bruising",
+      "ar": "كدمات سهلة",
+      "fr": "Ecchymoses faciles",
+      "hi": "आसान चोट लगना",
+      "tl": "Madaling pasa",
+      "ur": "آسانی سے چوٹ لگنا",
+      "sw": "Kuvunjika kwa urahisi",
+      "cn": "容易瘀伤",
+      "jp": "簡単にあざができる",
+      "pt": "Fácil de machucar",
+      "es": "Fácil de magullar",
+      "de": "Leichtes Bluten",
+      "it": "Facile da contusionare",
+      "ru": "Легко образуются синяки",
+      "ko": "쉽게 멍이 드는"
+    }
+  },
+  {
+    "id": "s13",
+    "category": "Renal",
+    "names": {
+      "en": "Frequent Urination",
+      "ar": "التبول المتكرر",
+      "fr": "Mictions fréquentes",
+      "hi": "बार-बार पेशाब आना",
+      "tl": "Madaling pag-ihi",
+      "ur": "بار بار پیشاب آنا",
+      "sw": "Kukojoa mara kwa mara",
+      "cn": "频繁排尿",
+      "jp": "頻尿",
+      "pt": "Micção frequente",
+      "es": "Micción frecuente",
+      "de": "Häufiges Wasserlassen",
+      "it": "Minzione frequente",
+      "ru": "Частое мочеиспускание",
+      "ko": "빈뇨"
+    }
+  },
+  {
+    "id": "s14",
+    "category": "Reproductive",
+    "names": {
+      "en": "Irregular Menstrual Cycle",
+      "ar": "دورة شهرية غير منتظمة",
+      "fr": "Cycle menstruel irrégulier",
+      "hi": "अनियमित मासिक धर्म चक्र",
+      "tl": "Hindi regular na menstrual cycle",
+      "ur": "غیر منظم حیض کا چکر",
+      "sw": "Mzunguko wa hedhi usio wa kawaida",
+      "cn": "月经不规律",
+      "jp": "不規則な月経周期",
+      "pt": "Ciclo menstrual irregular",
+      "es": "Ciclo menstrual irregular",
+      "de": "Unregelmäßiger Menstruationszyklus",
+      "it": "Ciclo mestruale irregolare",
+      "ru": "Нерегулярный менструальный цикл",
+      "ko": "불규칙한 생리 주기"
+    }
+  },
+  {
+    "id": "s15",
+    "category": "Immunological",
+    "names": {
+      "en": "Frequent Infections",
+      "ar": "العدوى المتكررة",
+      "fr": "Infections fréquentes",
+      "hi": "बार-बार संक्रमण होना",
+      "tl": "Madaling magka-impeksyon",
+      "ur": "بار بار انفیکشن ہونا",
+      "sw": "Maambukizi ya mara kwa mara",
+      "cn": "频繁感染",
+      "jp": "頻繁な感染症",
+      "pt": "Infecções frequentes",
+      "es": "Infecciones frecuentes",
+      "de": "Häufige Infektionen",
+      "it": "Infezioni frequenti",
+      "ru": "Частые инфекции",
+      "ko": "빈번한 감염"
+    }
+  },
+  {
+    "id": "s16",
+    "category": "General",
+    "names": {
+      "en": "Fever",
+      "ar": "حمى",
+      "fr": "Fièvre",
+      "hi": "बुखार",
+      "tl": "Lagnat",
+      "ur": "بخار",
+      "sw": "Homa",
+      "cn": "发烧",
+      "jp": "発熱",
+      "pt": "Febre",
+      "es": "Fiebre",
+      "de": "Fieber",
+      "it": "Febbre",
+      "ru": "Лихорадка",
+      "ko": "열"
+    }
+  },
+  {
+    "id": "s17",
+    "category": "General",
+    "names": {
+      "en": "Weight Loss",
+      "ar": "فقدان الوزن",
+      "fr": "Perte de poids",
+      "hi": "वजन कम होना",
+      "tl": "Pagbaba ng timbang",
+      "ur": "وزن میں کمی",
+      "sw": "Kupoteza uzito",
+      "cn": "体重减轻",
+      "jp": "体重減少",
+      "pt": "Perda de peso",
+      "es": "Pérdida de peso",
+      "de": "Gewichtsverlust",
+      "it": "Perdita di peso",
+      "ru": "Потеря веса",
+      "ko": "체중 감소"
+    }
+  },
+  {
+    "id": "s18",
+    "category": "General",
+    "names": {
+      "en": "Sweating",
+      "ar": "تعرق",
+      "fr": "Transpiration",
+      "hi": "पसीना आना",
+      "tl": "Pagpapawis",
+      "ur": "پسینہ آنا",
+      "sw": "Kuvuta",
+      "cn": "出汗",
+      "jp": "発汗",
+      "pt": "Suor",
+      "es": "Sudoración",
+      "de": "Schwitzen",
+      "it": "Sudorazione",
+      "ru": "Потоотделение",
+      "ko": "땀"
+    }
+  },
+  {
+    "id": "s19",
+    "category": "General",
+    "names": {
+      "en": "Chills",
+      "ar": "قشعريرة",
+      "fr": "Frissons",
+      "hi": "कांपना",
+      "tl": "Panginginig",
+      "ur": "سردی لگنا",
+      "sw": "Kuvunjika kwa baridi",
+      "cn": "寒战",
+      "jp": "悪寒",
+      "pt": "Calafrios",
+      "es": "Escalofríos",
+      "de": "Schüttelfrost",
+      "it": "Brividi",
+      "ru": "Озноб",
+      "ko": "오한"
+    }
+  },
+  {
+    "id": "s20",
+    "category": "General",
+    "names": {
+      "en": "Loss of Appetite",
+      "ar": "فقدان الشهية",
+      "fr": "Perte d'appétit",
+      "hi": "भूख न लगना",
+      "tl": "Pagkawala ng gana sa pagkain",
+      "ur": "بھوک کا خاتمہ",
+      "sw": "Kupoteza hamu ya chakula",
+      "cn": "食欲不振",
+      "jp": "食欲不振",
+      "pt": "Perda de apetite",
+      "es": "Pérdida de apetito",
+      "de": "Appetitlosigkeit",
+      "it": "Perdita di appetito",
+      "ru": "Потеря аппетита",
+      "ko": "식욕 감퇴"
+    }
+  },
+  {
+    "id": "s21",
+    "category": "General",
+    "names": {
+      "en": "Muscle Weakness",
+      "ar": "ضعف العضلات",
+      "fr": "Faiblesse musculaire",
+      "hi": "मांसपेशियों की कमजोरी",
+      "tl": "Mahina ang mga kalamnan",
+      "ur": "پٹھوں کی کمزوری",
+      "sw": "Udhaifu wa misuli",
+      "cn": "肌肉无力",
+      "jp": "筋力低下",
+      "pt": "Fraqueza muscular",
+      "es": "Debilidad muscular",
+      "de": "Muskelschwäche",
+      "it": "Debolezza muscolare",
+      "ru": "Слабость мышц",
+      "ko": "근육 약화"
+    }
+  },
+  {
+    "id": "s22",
+    "category": "General",
+    "names": {
+      "en": "Dizziness",
+      "ar": "دوار",
+      "fr": "Vertige",
+      "hi": "चक्कर आना",
+      "tl": "Pagkahilo",
+      "ur": "چکر آنا",
+      "sw": "Kuvunjika kwa kichwa",
+      "cn": "头晕",
+      "jp": "めまい",
+      "pt": "Tontura",
+      "es": "Mareos",
+      "de": "Schwindel",
+      "it": "Vertigini",
+      "ru": "Головокружение",
+      "ko": "어지러움"
+    }
+  },
+  {
+    "id": "s23",
+    "category": "General",
+    "names": {
+      "en": "Shortness of Breath",
+      "ar": "ضيق في التنفس",
+      "fr": "Essoufflement",
+      "hi": "सांस लेने में तकलीफ",
+      "tl": "Hirap sa paghinga",
+      "ur": "سانس لینے میں دشواری",
+      "sw": "Kupumua kwa shida",
+      "cn": "呼吸急促",
+      "jp": "息切れ",
+      "pt": "Falta de ar",
+      "es": "Falta de aliento",
+      "de": "Atemnot",
+      "it": "Fiato corto",
+      "ru": "Одышка",
+      "ko": "숨 가쁨"
+    }
+  },
+  {
+    "id": "s24",
+    "category": "Psychological",
+    "names": {
+      "en": "Panic Attacks",
+      "ar": "نوبات الهلع",
+      "fr": "Attaques de panique",
+      "hi": "पैनिक अटैक",
+      "tl": "Panic Attacks",
+      "ur": "پینک حملے",
+      "sw": "Shambulio la hofu",
+      "cn": "恐慌发作",
+      "jp": "パニック発作",
+      "pt": "Ataques de pânico",
+      "es": "Ataques de pánico",
+      "de": "Panikattacken",
+      "it": "Attacchi di panico",
+      "ru": "Панические атаки",
+      "ko": "공황 발작"
+    }
+   },
+   {
+    "id": "s25",
+    "category": "Psychological",
+    "names": {
+      "en": "Depression",
+      "ar": "اكتئاب",
+      "fr": "Dépression",
+      "hi": "अवसाद",
+      "tl": "Depresyon",
+      "ur": "ڈپریشن",
+      "sw": "Unyogovu",
+      "cn": "抑郁症",
+      "jp": "うつ病",
+      "pt": "Depressão",
+      "es": "Depresión",
+      "de": "Depression",
+      "it": "Depressione",
+      "ru": "Депрессия",
+      "ko": "우울증"
+    }
+  },
+    {
+      "id": "s26",
+      "category": "Neurological",
+      "names": {
+        "en": "Insomnia",
+        "ar": "أرق",
+        "fr": "Insomnie",
+        "hi": "अनिद्रा",
+        "tl": "Hindi makatulog",
+        "ur": "نیند نہ آنا",
+        "sw": "Ukosefu wa usingizi",
+        "cn": "失眠",
+        "jp": "不眠症",
+        "pt": "Insônia",
+        "es": "Insomnio",
+        "de": "Schlaflosigkeit",
+        "it": "Insonnia",
+        "ru": "Бессонница",
+        "ko": "불면증"
+      }
+    },
+      {
+        "id": "s27",
+        "category": "Psychological",
+        "names": {
+          "en": "Mood Swings",
+          "ar": "تقلبات المزاج",
+          "fr": "Sautes d'humeur",
+          "hi": "मूड स्विंग्स",
+          "tl": "Pagbabago ng mood",
+          "ur": "موڈ میں تبدیلی",
+          "sw": "Mabadiliko ya hisia",
+          "cn": "情绪波动",
+          "jp": "気分の変動",
+          "pt": "Mudanças de humor",
+          "es": "Cambios de humor",
+          "de": "Stimmungsschwankungen",
+          "it": "Sbalzi d'umore",
+          "ru": "Перепады настроения",
+          "ko": "기분 변화"
+        }
+      },
+      {
+    "id": "s28",
+    "category": "Neurological",
+    "names": {
+      "en": "Memory Loss",
+      "ar": "فقدان الذاكرة",
+      "fr": "Perte de mémoire",
+      "hi": "स्मृति हानि",
+      "tl": "Pagkawala ng memorya",
+      "ur": "یادداشت کا نقصان",
+      "sw": "Kupoteza kumbukumbu",
+      "cn": "记忆丧失",
+      "jp": "記憶喪失",
+      "pt": "Perda de memória",
+      "es": "Pérdida de memoria",
+      "de": "Gedächtnisverlust",
+      "it": "Perdita di memoria",
+      "ru": "Потеря памяти",
+      "ko": "기억 상실"
+    }
+  },
+  {
+    "id": "s29",
+    "category": "Musculoskeletal",
+    "names": {
+      "en": "Muscle Cramps",
+      "ar": "تشنجات العضلات",
+      "fr": "Crampes musculaires",
+      "hi": "मांसपेशियों में ऐंठन",
+      "tl": "Pagsakit ng kalamnan",
+      "ur": "پٹھوں میں درد",
+      "sw": "Kuvunjika kwa misuli",
+      "cn": "肌肉痉挛",
+      "jp": "筋肉のけいれん",
+      "pt": "Cãibras musculares",
+      "es": "Calambres musculares",
+      "de": "Muskelkrämpfe",
+      "it": "Crampi muscolari",
+      "ru": "Мышечные судороги",
+      "ko": "근육 경련"
+    }
+  },
+  {
+    "id": "s30",
+    "category": "Cardiovascular",
+    "names": {
+      "en": "Palpitations",
+      "ar": "خفقان القلب",
+      "fr": "Palpitations",
+      "hi": "दिल की धड़कन",
+      "tl": "Palpitations",
+      "ur": "دل کی دھڑکن",
+      "sw": "Kuvunjika kwa moyo",
+      "cn": "心悸",
+      "jp": "動悸",
+      "pt": "Palpitações",
+      "es": "Palpitaciones",
+      "de": "Herzklopfen",
+      "it": "Palpitazioni",
+      "ru": "Пальпитации",
+      "ko": "심계항진"
+    }
+  },
+  {
+    "id": "s31",
+    "category": "General",
+    "names": {
+      "en": "Vomiting",
+      "ar": "تقيؤ",
+      "fr": "Vomissement",
+      "hi": "उल्टी",
+      "tl": "Pagsusuka",
+      "ur": "قے",
+      "sw": "Kuvuta",
+      "cn": "呕吐",
+      "jp": "嘔吐",
+      "pt": "Vômito",
+      "es": "Vómito",
+      "de": "Erbrechen",
+      "it": "Vomito",
+      "ru": "Рвота",
+      "ko": "구토"
+    }
+  },
+  {
+    "id": "s32",
+    "category": "General",
+    "names": {
+      "en": "Sore Throat",
+      "ar": "التهاب الحلق",
+      "fr": "Mal de gorge",
+      "hi": "गले में खराश",
+      "tl": "Sakit sa lalamunan",
+      "ur": "گلے کی خراش",
+      "sw": "Maumivu ya koo",
+      "cn": "喉咙痛",
+      "jp": "喉の痛み",
+      "pt": "Dor de garganta",
+      "es": "Dolor de garganta",
+      "de": "Halsschmerzen",
+      "it": "Mal di gola",
+      "ru": "Боль в горле",
+      "ko": "목 통증"
+    }
+  }
+
+  ]
+}
