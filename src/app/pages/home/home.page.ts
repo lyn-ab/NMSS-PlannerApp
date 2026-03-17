@@ -3,6 +3,7 @@ import { IonicModule, ToastController } from "@ionic/angular";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccessibilityService } from '../../services/accessibility';
+import symptomsData from '../../../assets/data/symptoms.json';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,8 @@ import { AccessibilityService } from '../../services/accessibility';
 export class HomePage implements OnInit {
   progressValue = 0.4; // Example: 40% complete
   affirmation = "You're doing great! Just one step at a time.";
+
+  allSymptoms = symptomsData.symptoms;
 
   tasks = [
     {
