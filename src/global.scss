@@ -116,3 +116,34 @@ ion-tab-button {
     }
   }
 }
+
+.custom-glass-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Stays on top of content */
+  background: transparent;
+
+  ion-toolbar {
+    --background: rgba(2, 2, 2, 0.7); /* Pitch Black with transparency */
+    backdrop-filter: blur(15px); /* Professional "glass" blur */
+    -webkit-backdrop-filter: blur(15px);
+    --border-style: none;
+    padding: 10px 16px;
+  }
+
+  ion-title {
+    --color: #E8F0E2; /* Sage for title */
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+  }
+
+  .header-btn {
+    --color: #AFAFEF; /* Lilac for icons */
+    font-size: 1.6rem;
+    filter: drop-shadow(0 0 5px rgba(175, 175, 239, 0.2)); /* Subtle icon glow */
+  }
+}
