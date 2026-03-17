@@ -1,2 +1,20 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+:root {
+  /* Main Colors */
+  --ion-color-primary: #AFAFEF;      /* Muted Lilac */
+  --ion-color-secondary: #d9e5cf;    /* Soft Sage */
+  --ion-color-tertiary: #FAD6E7;     /* Soft Pink */
+
+  /* App Surfaces */
+  --ion-background-color: #020202;   /* Pitch Black */
+  --ion-item-background: #FFFFFF;    /* White cards for high contrast */
+
+  /* Text Colors */
+  --ion-text-color: #d9e5cf;         /* Soft white for text on dark background */
+
+  /* Custom Palette for easy use */
+  --palette-black: #020202;
+  --palette-lilac: #AFAFEF;
+  --palette-mint: #d9e5cf;
+  --palette-white: #FFFFFF;
+  --palette-pink: #FAD6E7;
+}

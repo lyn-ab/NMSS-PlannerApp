@@ -1,10 +1,29 @@
 .greeting-section {
   margin-bottom: 30px;
-  h1 { font-weight: 700; color: var(--ion-color-primary); }
+  padding: 10px;
+
+  h1 {
+    font-weight: 700;
+    color: #E8F0E2; // Soft Sage for the main greeting
+    font-size: 2.2rem;
+  }
+
   .action-buttons {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    ion-button {
+      --background: #AFAFEF; // Lilac button
+      --color: #020202;      // Black text for high contrast
+      --border-radius: 12px;
+      flex: 1;
+    }
+
+    ion-fab-button {
+      --background: #FAD6E7; // Pink accent for the mic
+      --color: #020202;
+    }
   }
 }
 
@@ -12,16 +31,23 @@
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
-
+  padding-bottom: 20px;
   &::-webkit-scrollbar { display: none; }
 }
 
 .task-card {
   min-width: 85%;
   scroll-snap-align: center;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 24px; // Extra rounded for "comfy" feel
+  background: #FFFFFF; // Stark white card surface for readability
+  margin: 0 10px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(175, 175, 239, 0.2); // Soft lilac glow shadow
+
+  ion-card-title {
+    color: #020202;
+    font-weight: 800;
+  }
 
   .card-top {
     display: flex;
@@ -31,13 +57,15 @@
   }
 
   .task-type-badge {
-    background: var(--ion-color-light);
-    padding: 4px 12px;
-    border-radius: 20px;
+    background: #E8F0E2; // Mint/Sage background
+    color: #020202;      // Black text
+    padding: 6px 14px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
   }
 
@@ -46,15 +74,28 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
-    border-top: 1px solid var(--ion-color-light);
+    border-top: 1px solid #f0f0f0;
     padding-top: 10px;
   }
 }
 
 .milestone-section {
-  margin-top: 20px;
+  margin-top: 30px;
+  padding: 20px;
   text-align: center;
-  .affirmation-text { font-style: italic; color: var(--ion-color-medium); }
+
+  ion-progress-bar {
+    height: 12px;
+    border-radius: 10px;
+    --progress-background: #AFAFEF; // Lilac progress
+    --buffer-background: rgba(232, 240, 226, 0.3); // Sage buffer
+  }
+
+  .affirmation-text {
+    margin-top: 15px;
+    font-style: italic;
+    color: #AFAFEF; // Soft lilac text
+  }
 }
 
 .clickable {
@@ -62,14 +103,15 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--ion-color-primary); // Make it blue like a link
+  color: #AFAFEF; // Lilac link color
 
   &:active {
-    opacity: 0.6; // Visual feedback when tapped
+    opacity: 0.6;
   }
 
   p {
     margin: 0;
     text-decoration: underline;
+    font-weight: 500;
   }
 }
