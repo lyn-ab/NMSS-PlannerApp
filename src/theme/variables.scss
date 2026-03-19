@@ -1,7 +1,7 @@
 :root {
   /* Main Colors */
   --ion-color-primary: #a8a8ec;      /* Muted Lilac */
-  --ion-color-secondary: #c2e1a9;    /* Soft Sage */
+  --ion-color-secondary: hsl(93, 48%, 77%);    /* Soft Sage */
   --ion-color-tertiary: #e282af;     /* Soft Pink */
 
   /* App Surfaces */
@@ -16,5 +16,5 @@
   --palette-lilac: #a8a8ec;
   --palette-mint: #c2e1a9;
   --palette-white: #f2edf4;
-  --palette-pink: #FAD6E7;
+  --palette-pink: #e282af;
 }

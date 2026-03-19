@@ -147,3 +147,46 @@ ion-tab-button {
     filter: drop-shadow(0 0 5px rgba(175, 175, 239, 0.2)); /* Subtle icon glow */
   }
 }
+
+ion-modal {
+  --background: #F0F8EA;
+  --border-radius: 24px;
+}
+
+ion-modal .modal-content {
+  --background: #eef5e9;
+  --color: #020202;
+}
+
+ion-modal .modal-wrapper {
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+ion-modal h2 {
+  font-weight: 800;
+  color: #16151d;
+  margin: 15px 0;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+}
+
+
+.steps-modal {
+  --background: #ffffff;
+  --border-radius: 30px;
+  --width: 90%;
+  --height: 70%;
+}
+
+.steps-modal .modal-content {
+  --background: #f6f6f6;
+  color: #020202;
+  text-align: center;
+}
+
+.steps-modal .modal-wrapper {
+  align-items: center !important;
+  justify-content: center !important;
+}

@@ -68,3 +68,11 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+#ignore api keys
+/src/environments/config-api.ts
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

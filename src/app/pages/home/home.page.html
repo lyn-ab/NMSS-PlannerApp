@@ -1,32 +1,87 @@
-<!--<ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar>
-    <ion-title>Good Morning!</ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="person-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>-->
-
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="greeting-section">
     <h1>How are you feeling today?</h1>
-    <div class="action-buttons" style="display: flex; align-items: center; gap: 10px;">
-      <ion-button (click)="openSymptomLogger()" shape="round" style="flex: 1;">
+    <div class="action-buttons">
+      <ion-button id="open-log-modal" (click)="openSymptomLogger()" shape="round" class="fill">
         Log Symptoms
       </ion-button>
-      <ion-fab-button size="small" color="secondary">
+      <ion-fab-button size="small" color="secondary" class="icon-btn">
         <ion-icon name="mic"></ion-icon>
       </ion-fab-button>
     </div>
   </div>
 
+  <ion-modal trigger="open-log-modal"[initialBreakpoint]="0.75" [breakpoints]="[0, 0.75, 1]">
+    <ng-template>
+      <ion-content class="ion-padding modal-content">
+        <div class="modal-handle"></div>
+
+        <ng-container *ngIf="!selectedSymptom; else severityBlock">
+          <div>
+            <h2>what are you experiencing?</h2>
+            <ion-searchbar
+              placeholder="Search symptoms..."
+              [(ngModel)]="searchTerm"
+              (ionInput)="onSearchChange($event)"
+              animated="true">
+            </ion-searchbar>
+
+            <ion-list lines="none" class="search-results">
+              <ion-item button *ngFor="let s of filteredList" (click)="selectSymptom(s)">
+                <ion-label>
+                  <span class="category-tag">{{ s.category }}</span>
+                  {{ getSymptomName(s) }}
+                </ion-label>
+                <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+              </ion-item>
+            </ion-list>
+
+            <h2 class="selected-title" *ngIf="selectedSymptom">
+              {{ getSymptomName(selectedSymptom) }}
+            </h2>
+          </div>
+        </ng-container>
+
+        <ng-template #severityBlock>
+          <div class="severity-container" [class.severity-high]="severity >= 4">
+            <ion-button fill="clear" (click)="resetSelection()" class="back-btn">
+              <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+              change symptom
+            </ion-button>
+
+            <h2 class="selected-title">{{ selectedSymptom.names?.[currentLanguage] }}</h2>
+            <p class="subtitle">How severe is it?</p>
+
+            <div class="severity-value">Severity: {{ severity }}</div>
+
+            <div class="range-wrapper">
+              <ion-range min="1" max="5" snaps="true" ticks="true" [(ngModel)]="severity">
+                <ion-label slot="start">mild</ion-label>
+                <ion-label slot="end">severe</ion-label>
+              </ion-range>
+            </div>
+
+            <div class="voice-box">
+              <ion-button fill="clear" class="voice-btn">
+                <ion-icon name="mic-circle-outline"></ion-icon>
+                <span>record details</span>
+              </ion-button>
+            </div>
+
+            <ion-button expand="block" class="spicy-btn" (click)="saveLog()">
+              save entry
+            </ion-button>
+          </div>
+        </ng-template>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
   <div class="task-section">
     <h3>Your Tasks</h3>
     <div class="task-slider">
-      @for (task of tasks; track task.title) {
-        <ion-card class="task-card">
+      <ng-container *ngIf="tasks.length; else emptyTasks">
+        <ion-card class="task-card" *ngFor="let task of tasks">
           <div class="card-inner">
             <div class="header-row">
               <div class="type-badge">
@@ -40,13 +95,31 @@
 
             <div class="tag-row">
               <span class="upcoming-tag">#upcoming</span>
+              <span class="time-tag">{{ task.duedate | date:'shortTime' }}</span>
             </div>
 
             <div class="button-action-row">
-              <button class="btn-micro" (click)="generateSteps(task)">
-                <ion-icon name="sparkles-outline"></ion-icon>
-                Generate microsteps
+              <button class="btn-micro" (click)="toggleMicrosteps(task)" [disabled]="task.isGenerating">
+
+                <ion-spinner name="dots" *ngIf="task.isGenerating" style="color: #020202;"></ion-spinner>
+
+                <ng-container *ngIf="!task.isGenerating">
+                  <ion-icon [name]="(task.microsteps && task.microsteps.length > 0) ? 'eye-outline' : 'sparkles-outline'"></ion-icon>
+                  <span>{{ (task.microsteps && task.microsteps.length > 0) ? 'Show' : 'Generate' }} microsteps</span>
+                </ng-container>
+
               </button>
+            </div>
+            <div class="microsteps-container" *ngIf="task.showMicrosteps">
+              <div class="ai-header">
+                <ion-icon name="sparkles"></ion-icon>
+                <small>Personalized for your energy level</small>
+              </div>
+              <ul>
+                <li *ngFor="let step of task.microsteps; let i = index">
+                  <span class="step-num">{{ i + 1 }}</span> {{ step }}
+                </li>
+              </ul>
             </div>
 
             <div class="footer-row">
@@ -59,9 +132,11 @@
             </div>
           </div>
         </ion-card>
-      } @empty {
+      </ng-container>
+
+      <ng-template #emptyTasks>
         <p class="ion-padding ion-text-center">No tasks for today. Rest up!</p>
-      }
+      </ng-template>
     </div>
   </div>
 
@@ -71,3 +146,30 @@
     <p class="affirmation-text">{{ affirmation }}</p>
   </div>
 </ion-content>
+
+<ion-modal
+  cssClass="steps-modal"
+  [isOpen]="!!selectedTaskForModal"
+  (didDismiss)="closeSteps()">
+  <ng-template>
+    <ion-content class="ion-padding modal-content">
+      <div class="modal-handle"></div>
+
+      <div class="ai-header">
+        <ion-icon name="sparkles"></ion-icon>
+        <span>AI Simplified: {{ selectedTaskForModal?.title }}</span>
+      </div>
+
+      <p class="subtitle">Focus on one small thing at a time.</p>
+
+      <ul class="steps-list">
+        <li *ngFor="let step of selectedTaskForModal?.microsteps || []; let i = index">
+          <div class="step-num">{{ i + 1 }}</div>
+          <div class="step-text">{{ step }}</div>
+        </li>
+      </ul>
+
+      <button class="btn-close" (click)="closeSteps()">Got it, thanks!</button>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,199 +1,316 @@
-/* Ensure the overall background is your Pitch Black */
-:host {
-  display: block;
-  background-color: #020202;
+:host{display:block;background:#020202}
+.greeting-section{
+  margin-bottom:30px;
+  padding:20px}
+.greeting-section h1{
+  font-weight:700;
+  color:#E8F0E2;
+  font-size:2.2rem;
+  margin-bottom:15px}
+.greeting-section ion-button{
+  --background:#AFAFEF;
+  --color:#020202;
+  --border-radius:12px;
+  font-weight:600}
+.greeting-section ion-fab-button{
+  --background:#FAD6E7;
+  --color:#020202}
+
+.action-buttons{
+  display:flex;
+  align-items:center;
+  gap:10px}
+.action-buttons .fill{
+  flex:1}
+
+.task-slider{
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:0 10px 20px}
+.task-slider::-webkit-scrollbar{display:none}
+
+.task-card{
+  min-width:85%;
+  scroll-snap-align:center;
+  border-radius:24px;
+  background:#fff!important;
+  margin:0 10px;
+  color:#020202;
+  box-shadow:0 8px 20px rgba(175,175,239,.15);
+  position:relative;
+  z-index:10;
+  pointer-events:auto!important}
+.task-card .card-inner{padding:18px}
+
+.header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px}
+.header-row .type-badge{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#AFAFEF;
+  font-weight:700;
+  font-size:.85rem;
+  text-transform:lowercase}
+
+.task-title{
+  margin:5px 0;
+  font-size:1.4rem;
+  font-weight:800;
+  color:#020202}
+
+.tag-row{
+  margin-bottom:8px}
+
+.upcoming-tag{
+  color:#AFAFEF;
+  font-size:.8rem;
+  font-weight:600}
+
+.time-tag{
+  font-size:.9rem;
+  color:#666}
+
+.button-action-row{
+  margin-bottom:12px}
+
+.btn-micro{
+  background:#E8F0E2;
+  color:#020202;
+  border:none;
+  padding:8px 16px;
+  border-radius:12px;
+  font-size:.8rem;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer
+  ion-spinner {
+    width: 28px;
+    height: 15px;
+    margin-right: 5px;
+  }
 }
 
-.greeting-section {
-  margin-bottom: 30px;
+.btn-skip{
+  background:#b85c86;
+  color:#fff;
+  border:none;
+  padding:6px 14px;
+  border-radius:10px;
+  font-size:.75rem;
+  font-weight:600;
+  cursor:pointer}
+
+.footer-row{
+  padding-top:10px;
+  border-top:1px solid #AFAFEF;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:18px}
+
+.location-info{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:.9rem;
+  font-weight:600;
+  color:#020202}
+.location-info ion-icon{
+  color:#AFAFEF}
+
+.milestone-section{
+  padding:20px;
+  text-align:center}
+
+.milestone-section ion-progress-bar{
+  height:12px;
+  border-radius:10px;
+  --progress-background:#AFAFEF;
+  --buffer-background:rgba(232,240,226,.2)}
+
+.affirmation-text{
+  margin-top:15px;
+  font-style:italic;
+  color:#AFAFEF}
+
+/* Microsteps modal is styled globally in global.scss via .steps-modal */
+
+.modal-handle{width:45px;height:6px;background:#E8F0E2;border-radius:10px;margin:12px auto}
+
+ion-searchbar {
+  --background: #F0F8EA;
+  --color: #020202;
+  --placeholder-color: #666666;
+  --icon-color: #AFAFEF;
+  --border-radius: 16px;
+  margin: 10px 0;
+  input {  color: #020202 !important;}
+}
+
+.search-results{background:transparent;padding:0 10px}
+.search-results ion-item{
+  --background:#a8a8ec;
+  --border-radius:15px;
+  margin-bottom:10px;
+  --padding-start:15px;
+  font-weight:600;
+  transition:transform .2s}
+.search-results ion-item:active{
+  transform:scale(.98)}
+
+.category-tag{
+  font-size:.65rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#5151b8;
+  display:block;
+  margin-bottom:4px}
+
+.severity-container{padding:10px 20px}
+
+.subtitle{
+  color:#666;
+  margin-bottom:25px}
+
+.range-wrapper{margin:30px 0}
+.range-wrapper ion-range{
+  --knob-background:#AFAFEF;
+  --bar-background-active:#AFAFEF;
+  padding:0 20px;
+  transition: transform 0.2s ease, --bar-background-active 0.2s ease, --knob-background 0.2s ease;
+}
+.range-wrapper ion-label{
+  font-weight:700;
+  color:#AFAFEF}
+
+/* Highlight slider when severity is high */
+.severity-container.severity-high .range-wrapper ion-range {
+  --knob-background: #e282af;
+  --bar-background-active: #e282af;
+  transform: scale(1.08);
+  transform-origin: center;
+}
+
+.severity-badge{
+  width:70px;
+  height:70px;
+  line-height:70px;
+  border-radius:50%;
+  background:#AFAFEF;
+  color:#020202;
+  font-size:1.8rem;
+  font-weight:800;
+  margin:25px auto;
+  box-shadow:0 8px 20px rgba(175,175,239,.3);
+  transition:.3s}
+
+.severity-badge[data-level="4"],.severity-badge[data-level="5"]{
+  background:#e282af;
+  box-shadow:0 8px 20px rgba(226,130,175,.4);
+  transform:scale(1.1)}
+
+.voice-box{
+  margin:25px 0;
+  border-top:1px solid #AFAFEF;
+  padding-top:15px}
+
+.voice-btn{--color:#e282af;font-weight:700}
+.voice-btn ion-icon{font-size:2rem;margin-right:10px}
+
+.back-btn{--color:#999;font-size:.9rem;margin-bottom:10px}
+
+.ai-header{
+  color:#8a8ae0;
+  font-weight:700;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:5px}
+
+.microsteps-container ul{list-style:none;padding:0}
+.microsteps-container li{
+  font-size:.85rem;
+  margin-bottom:6px;
+  display:flex;
+  align-items:center}
+
+.step-num{
+  background:#AFAFEF;
+  color:#fbfaff;
+  min-width:26px;
+  min-height:26px;
+  width:auto;
+  height:auto;
+  padding:6px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.85rem;
+  font-weight:700;
+  line-height:1;
+  flex-shrink:0;
+  margin-right:8px;
+}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.steps-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7); // Dims the background
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end; // Puts the card at the bottom
+  animation: fadeIn 0.3s ease;
+}
+
+.steps-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 30px 30px 0 0;
   padding: 20px;
-
-  h1 {
-    font-weight: 700;
-    color: #E8F0E2; // Soft Sage
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-  }
-
-  ion-button {
-    --background: #AFAFEF; // Lilac
-    --color: #020202;      // Black text
-    --border-radius: 12px;
-    font-weight: 600;
-  }
-
-  ion-fab-button {
-    --background: #FAD6E7; // Pink accent
-    --color: #020202;
-  }
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 -10px 25px rgba(0,0,0,0.2);
+  animation: slideUp 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.task-slider {
+.steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.steps-list li {
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 0 10px 20px 10px;
-  &::-webkit-scrollbar { display: none; }
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 18px;
+  background: #ece6f2;
+  padding: 12px;
+  border-radius: 15px;
 }
 
-.task-card {
-  min-width: 85%;
-  scroll-snap-align: center;
-  border-radius: 24px;
-  background: #FFFFFF !important; // Force the White card
-  margin: 0 10px;
+.btn-close {
+  width: 100%;
+  background: #AFAFEF;
   color: #020202;
-  box-shadow: 0 8px 20px rgba(175, 175, 239, 0.15);
-
-  .card-inner {
-    padding: 18px;
-  }
-}
-
-/* Matching your new layout classes */
-.header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-
-  .type-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #AFAFEF; // Lilac
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: lowercase;
-  }
-}
-
-.task-title {
-  margin: 5px 0;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #020202;
-}
-
-.upcoming-tag {
-  color: #AFAFEF;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.footer-row {
-  margin-top: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.location-info {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #020202;
-
-  ion-icon { color: #AFAFEF; }
-}
-
-.button-group {
-  display: flex;
-  gap: 8px;
-
-  button {
-    border: none;
-    padding: 8px 14px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 700;
-  }
-
-  .btn-micro {
-    background: #E8F0E2; // Soft Sage
-    color: #020202;
-  }
-
-  .btn-skip {
-    background: #e282af; // The Pink you liked
-    color: #FFFFFF;
-  }
-}
-
-.milestone-section {
-  padding: 20px;
-  text-align: center;
-
-  ion-progress-bar {
-    height: 12px;
-    border-radius: 10px;
-    --progress-background: #AFAFEF;
-    --buffer-background: rgba(232, 240, 226, 0.2);
-  }
-
-  .affirmation-text {
-    margin-top: 15px;
-    font-style: italic;
-    color: #AFAFEF;
-  }
-}
-
-/* Add this to your home.page.scss */
-
-.tag-row {
-  margin-bottom: 8px; // Space before the button
-}
-
-.button-action-row {
-  margin-bottom: 12px; // Space before the footer
-
-  .btn-micro {
-    background: #E8F0E2; // Your Sage
-    color: #020202;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-
-    &:active { opacity: 0.7; }
-  }
-}
-
-.footer-row {
-  padding-top: 10px;
-  border-top: 1px solid #f5f5f5; // Subtle line to separate actions
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.btn-skip {
-  background: #b85c86; // The Pink
-  color: #FFFFFF;
   border: none;
-  padding: 6px 14px;
-  border-radius: 10px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-
-  &:active { opacity: 0.7; }
+  padding: 15px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
-.task-card {
-  position: relative;
-  z-index: 10; /* Lifts the card up */
-  pointer-events: auto !important; /* Forces clickability */
-}
-
-.button-group button {
-  position: relative;
-  z-index: 20; /* Lifts the button even higher */
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
 }

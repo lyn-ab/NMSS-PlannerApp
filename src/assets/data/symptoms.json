@@ -671,7 +671,197 @@
       "ru": "Боль в горле",
       "ko": "목 통증"
     }
+  },
+  {
+    "id": "s33",
+    "category": "General",
+    "names": {
+      "en": "Runny Nose",
+      "ar": "سيلان الأنف",
+      "fr": "Nez qui coule",
+      "hi": "नाक बहना",
+      "tl": "Sipon",
+      "ur": "ناک بہنا",
+      "sw": "Pua inatiririka",
+      "cn": "流鼻涕",
+      "jp": "鼻水",
+      "pt": "Nariz escorrendo",
+      "es": "Nariz que moquea",
+      "de": "Laufende Nase",
+      "it": "Naso che cola",
+      "ru": "Насморк",
+      "ko": "콧물"
+    }
+  },
+  {
+    "id": "s34",
+    "category": "General",
+    "names": {
+      "en": "Sneezing",
+      "ar": "العطس",
+      "fr": "Éternuement",
+      "hi": "छींक आना",
+      "tl": "Pagsinghot",
+      "ur": "چھینک آنا",
+      "sw": "Kuvuta",
+      "cn": "打喷嚏",
+      "jp": "くしゃみ",
+      "pt": "Espirro",
+      "es": "Estornudo",
+      "de": "Niesen",
+      "it": "Starnuto",
+      "ru": "Чихание",
+      "ko": "재채기"
+    }
+  },
+  {
+    "id": "s35",
+    "category": "General",
+    "names": {
+      "en": "Itchy Eyes",
+      "ar": "حكة في العين",
+      "fr": "Démangeaisons oculaires",
+      "hi": "आंखों में खुजली",
+      "tl": "Pangangati ng mata",
+      "ur": "آنکھوں میں خارش",
+      "sw": "Kuvuta macho",
+      "cn": "眼睛痒",
+      "jp": "目のかゆみ",
+      "pt": "Coceira nos olhos",
+      "es": "Picazón en los ojos",
+      "de": "Juckende Augen",
+      "it": "Prurito agli occhi",
+      "ru": "Зуд в глазах",
+      "ko": "눈 가려움"
+    }
+  },
+  {
+    "id": "s36",
+    "category": "Psychological",
+    "names": {
+      "en": "Psychosis",
+      "ar": "ذهان",
+      "fr": "Psychose",
+      "hi": "साइकोसिस",
+      "tl": "Psychosis",
+      "ur": "سائیکوسس",
+      "sw": "Psychosis",
+      "cn": "精神病",
+      "jp": "精神病",
+      "pt": "Psicose",
+      "es": "Psicosis",
+      "de": "Psychose",
+      "it": "Psicosi",
+      "ru": "Психоз",
+      "ko": "정신병"
+    }
+  },
+  {
+    "id": "s37",
+    "category": "Psychological",
+    "names": {
+      "en": "Hallucinations",
+      "ar": "هلوسة",
+      "fr": "Hallucinations",
+      "hi": "हैलुसिनेशन",
+      "tl": "Hallucinations",
+      "ur": "ہیلوسینیشن",
+      "sw": "Halusinasi",
+      "cn": "幻觉",
+      "jp": "幻覚",
+      "pt": "Alucinações",
+      "es": "Alucinaciones",
+      "de": "Halluzinationen",
+      "it": "Allucinazioni",
+      "ru": "Галлюцинации",
+      "ko": "환각"
+    }
+  },
+  {
+    "id": "s38",
+    "category": "Psychological",
+    "names": {
+      "en": "Delusions",
+      "ar": "أوهام",
+      "fr": "Délires",
+      "hi": "भ्रम",
+      "tl": "Delusions",
+      "ur": "وہمات",
+      "sw": "Delusions",
+      "cn": "妄想",
+      "jp": "妄想",
+      "pt": "Delírios",
+      "es": "Delirios",
+      "de": "Wahnvorstellungen",
+      "it": "Deliri",
+      "ru": "Бредовые идеи",
+      "ko": "망상"
+    }
+  },
+  {
+    "id": "s39",
+    "category": "Psychological",
+    "names": {
+      "en": "Paranoia",
+      "ar": "جنون العظمة",
+      "fr": "Paranoïa",
+      "hi": "पैरानॉयया",
+      "tl": "Paranoia",
+      "ur": "پیرانویا",
+      "sw": "Paranoia",
+      "cn": "偏执狂",
+      "jp": "偏執病",
+      "pt": "Paranoia",
+      "es": "Paranoia",
+      "de": "Paranoia",
+      "it": "Paranoia",
+      "ru": "Паранойя",
+      "ko": "편집증"
+    }
+  },
+  {
+    "id": "s40",
+    "category": "Psychological",
+    "names": {
+      "en": "Obsessive-Compulsive Behavior",
+      "ar": "السلوك الوسواسي القهري",
+      "fr": "Comportement obsessionnel-compulsif",
+      "hi": "आवेशपूर्ण-आवश्यक व्यवहार",
+      "tl": "Obsessive-Compulsive Behavior",
+      "ur": "وسواسی-جبری رویہ",
+      "sw": "Tabia ya Obsessive-Compulsive",
+      "cn": "强迫行为",
+      "jp": "強迫行動",
+      "pt": "Comportamento obsessivo-compulsivo",
+      "es": "Comportamiento obsesivo-compulsivo",
+      "de": "Zwanghaftes Verhalten",
+      "it": "Comportamento ossessivo-compulsivo",
+      "ru": "Обсессивно-компульсивное поведение",
+      "ko": "강박 행동"
+    }
+  },
+  {
+    "id": "s41",
+    "category": "Psychological",
+    "names": {
+      "en": "Dissociation",
+      "ar": "الانفصال",
+      "fr": "Dissociation",
+      "hi": "विच्छेदन",
+      "tl": "Dissociation",
+      "ur": "دھوکہ دہی",
+      "sw": "Dissociation",
+      "cn": "解离",
+      "jp": "解離",
+      "pt": "Dissociação",
+      "es": "Disociación",
+      "de": "Dissoziation",
+      "it": "Dissociazione",
+      "ru": "Диссоциация",
+      "ko": "해리"
+    }
   }
+
 
   ]
 }
