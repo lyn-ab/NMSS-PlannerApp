@@ -1,20 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from "@ionic/angular";
+import { IonicModule, NavController } from "@ionic/angular";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Task {
-  title: string;
-  type: string;
-  icon: string;
-  locationName: string;
-  duedate: Date;
-  userNotes?: string;
-  showMicrosteps?: boolean;
-  microsteps?: string[];
-  isGenerating?: boolean;
-}
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-add-task',
@@ -25,7 +14,7 @@ interface Task {
 export class AddTaskPage implements OnInit {
 
   minDate: string = new Date().toISOString();
-  
+
   newTask: Task = {
     title: '',
     type: 'General',
@@ -45,7 +34,7 @@ export class AddTaskPage implements OnInit {
     { name: 'Chore', icon: 'home-outline' }
   ];
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }

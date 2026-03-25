@@ -8,18 +8,7 @@ import symptomsData from '../../../assets/data/symptoms.json';
 import { HttpClient } from '@angular/common/http';
 import { SECRET_KEYS } from 'src/environments/config-api';
 import { GeminiService } from 'src/app/services/gemini';
-
-interface Task {
-  title: string;
-  type: string;
-  icon: string;
-  locationName: string;
-  duedate: Date;
-  userNotes?: string;
-  showMicrosteps?: boolean;
-  microsteps?: string[];
-  isGenerating?: boolean;
-}
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-home',
@@ -49,29 +38,22 @@ export class HomePage implements OnInit {
     preferences: 'Quiet environments, needs frequent sitting breaks'
   };
 
-  tasks: any[] = [
-    {
-      title: 'Weekly Sync',
-      type: 'Meeting',
-      icon: 'videocam',
-      locationName: 'Google Meet',
-      duedate: new Date(new Date().getTime() + 60 * 60 * 1000),
-      userNotes: 'I am feeling very brain-foggy today.',
-      showMicrosteps: false,
-      microsteps: []
-    },
-    {
-      title: 'Pharmacy Pickup',
-      type: 'Refill',
-      icon: 'medkit',
-      locationName: 'Life Pharmacy',
-      duedate: new Date(new Date().getTime() + 60 * 60 * 1000),
-      userNotes: 'The pharmacy is usually crowded and hot.',
-      showMicrosteps: false,
-      microsteps: []
-    }
-  ];
+  tasks: Task[] = [
+    new Task(
+      'Weekly Sync',
+      'Meeting', 'videocam',
+      'Google Meet',
+      new Date(new Date().getTime() + 60 * 60 * 1000),
+      'I am feeling very brain-foggy today.'),
 
+    new Task(
+      'Pharmacy Pickup',
+      'Refill',
+      'medkit',
+      'Life Pharmacy',
+      new Date(new Date().getTime() + 60 * 60 * 1000),
+      'The pharmacy is usually crowded and hot.')
+  ];
 
   selectedTaskForModal: Task | null = null;
 
@@ -153,30 +135,6 @@ export class HomePage implements OnInit {
     console.log('Navigate to logging page');
   }
 
-
-  /*async toggleMicrosteps(task: any) {
-    if (task.microsteps && task.microsteps.length > 0) {
-      task.showMicrosteps = !task.showMicrosteps;
-      this.selectedTaskForModal = task;
-      return;
-    }
-
-    task.isGenerating = true;
-    try {
-      const aiResponse = await this.generateSteps(task);
-      task.microsteps = this.parseSteps(aiResponse);
-      task.showMicrosteps = true;
-      this.selectedTaskForModal = task;
-    } catch (error) {
-      console.error("AI Error:", error);
-      task.microsteps = ["AI is currently unavailable. Try again later."];
-      task.showMicrosteps = true;
-      this.selectedTaskForModal = task;
-    } finally {
-      task.isGenerating = false;
-    }
-  }*/
-
  async toggleMicrosteps(task: any) {
     if (!task.microsteps || task.microsteps.length === 0) {
       task.isGenerating = true;
@@ -247,7 +205,6 @@ export class HomePage implements OnInit {
 
   async checkGeminiModels() {
     try {
-      // We call the function we added to the service
       await this.geminiService.checkModels();
     } catch (err) {
       console.error("Could not list models:", err);
