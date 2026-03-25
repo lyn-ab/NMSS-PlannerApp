@@ -1,4 +1,29 @@
+
 <ion-content [fullscreen]="true" class="ion-padding">
+  <div class="header-greeting">
+  <h1>Good <span class="highlight">{{ greeting }}</span>, {{ userProfile.userName }}!</h1>
+  <p class="snapshot-text">Here's your day. Take one step at a time!</p>
+</div>
+
+  <div class="mini-calendar-container">
+  <div class="calendar-info-row">
+    <div class="date-header">
+      <span class="month">{{ currentMonthYear }}</span>
+      <!--<span class="live-time">{{ currentTime }}</span>-->
+    </div>
+    <ion-icon name="calendar-clear-outline" class="header-icon"></ion-icon>
+  </div>
+
+  <div class="week-strip">
+    <div *ngFor="let day of weekDays"
+         class="day-box"
+         [class.today]="day.isToday">
+      <span class="day-label">{{ day.dayName }}</span>
+      <span class="day-number">{{ day.dateNumber }}</span>
+    </div>
+  </div>
+</div>
+
   <div class="greeting-section">
     <h1>How are you feeling today?</h1>
     <div class="action-buttons">

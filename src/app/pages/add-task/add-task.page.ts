@@ -49,7 +49,8 @@ export class AddTaskPage implements OnInit {
     console.log("Listening...");
   }
 
-  saveTask() {
+  async saveTask() {
+    
     console.log("Saving to Firebase/Local...", this.newTask);
     // Logic to push to array and navigate back
   }

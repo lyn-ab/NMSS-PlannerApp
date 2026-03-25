@@ -31,7 +31,16 @@ export class HomePage implements OnInit {
 
   filteredList: any[] = [];
 
+    // Inside your HomePage class
+  currentTime: string = '';
+  currentMonthYear: string = '';
+  weekDays: any[] = [];
+  private timer: any;
+
+  greeting : string = '';
+
   userProfile = {
+    userName: 'Alex',
     conditions: ['Chronic Fatigue Syndrome', 'POTS'],
     triggers: ['Bright lights', 'Long standing'],
     currentEnergy: 'Low',
@@ -70,7 +79,40 @@ export class HomePage implements OnInit {
     this.currentLanguage = this.languageService.getLanguage();
     this.allSymptoms = symptomsData.symptoms || [];
     this.checkGeminiModels();
+    this.updateClock();
+    this.generateWeek();
+    // Update time every minute
+    this.timer = setInterval(() => this.updateClock(), 60000);
+    this.setGreeting();
   }
+
+  ngOnDestroy() {
+    if (this.timer) clearInterval(this.timer);
+  }
+
+  updateClock() {
+    const now = new Date();
+    this.currentTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    this.currentMonthYear = now.toLocaleDateString([], { month: 'long', year: 'numeric' });
+  }
+
+generateWeek() {
+  const now = new Date();
+  const startOfWeek = new Date(now);
+  // Get Sunday of the current week
+  startOfWeek.setDate(now.getDate() - now.getDay());
+
+  this.weekDays = [];
+  for (let i = 0; i < 7; i++) {
+    const tempDate = new Date(startOfWeek);
+    tempDate.setDate(startOfWeek.getDate() + i);
+    this.weekDays.push({
+      dayName: tempDate.toLocaleDateString([], { weekday: 'short' }), // "Mon", "Tue"
+      dateNumber: tempDate.getDate(),
+      isToday: tempDate.toDateString() === now.toDateString()
+    });
+  }
+}
 
   loadSymptoms(){
     this.http.get<any>('assets/data/symptoms.json').subscribe(data => {
@@ -209,6 +251,17 @@ export class HomePage implements OnInit {
     } catch (err) {
       console.error("Could not list models:", err);
     }
+  }
+
+  setGreeting() {
+      const hour = new Date().getHours();
+      if (hour < 12) {
+        this.greeting='Morning';
+      } else if (hour < 18) {
+        this.greeting='Afternoon';
+      } else {
+        this.greeting='Evening';
+      }
   }
 
 }
