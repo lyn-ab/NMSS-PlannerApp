@@ -1,0 +1,112 @@
+.form-wrapper {
+  display: block;
+  width: 100%;
+  padding-bottom: 50px;
+  background: #000; // Deep black background
+}
+
+.input-group {
+  margin-top: 15px;
+  margin-bottom: 25px;
+
+  .main-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #F0F8EA; // Your Pale Green for labels
+    margin-bottom: 15px;
+    display: block;
+  }
+}
+
+.voice-input-wrapper {
+  background: #292729; // Darker container for dark mode
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  border: 1px solid #3d3d3d;
+  color: #fff;
+
+  ion-input {
+    --color: #fff;
+    --placeholder-color: #999;
+  }
+
+  &:focus-within {
+    border-color: #d5e9c7; // Pink border on focus
+    background: #1a1a1a;
+  }
+
+  .btn-voice {
+    --color: #d5e9c7; // Pink microphone icon
+  }
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.category-chip {
+  background: #292729; // Dark chip base
+  border: 1.5px solid #3d3d3d;
+  border-radius: 16px;
+  padding: 15px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+
+  ion-icon { font-size: 1.8rem; color: #AFAFEF; } // Lilac icons
+  span { font-size: 0.8rem; color: #ccc; }
+
+  &.active {
+    background: #B1B0ED; // Your Soft Pink for active selection
+    border-color: #B1B0ED;
+    transform: scale(1.05);
+
+    ion-icon { color: #000; } // Black icon on pink for contrast
+    span { color: #000; font-weight: 700; }
+  }
+}
+
+.details-card {
+  background: #1a1a1a; // Slightly darker than the input wrappers
+  border-radius: 20px;
+  padding: 5px 15px;
+  margin-bottom: 30px;
+  border: 1px solid #292729;
+
+  .detail-row {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    border-bottom: 1px solid #3d3d3d;
+
+    &:last-child { border-bottom: none; }
+
+    ion-icon {
+      color: #AFAFEF; // Lilac icons in the details list
+      font-size: 1.3rem;
+      margin-right: 15px;
+      width: 24px;
+    }
+
+    // Style for the text inside inputs/textareas in this card
+    ion-input, ion-textarea {
+      --color: #F0F8EA; // Green text for readability in details
+    }
+  }
+}
+
+.btn-save {
+  --background: #d5e9c7; // Pink save button
+  --color: #000; // Black text on pink
+  --border-radius: 16px;
+  height: 56px;
+  margin-top: 10px;
+  font-weight: 800;
+  --box-shadow: 0 4px 15px rgba(250, 214, 231, 0.3);
+}

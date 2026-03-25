@@ -52,13 +52,19 @@
             <h2 class="selected-title">{{ selectedSymptom.names?.[currentLanguage] }}</h2>
             <p class="subtitle">How severe is it?</p>
 
-            <div class="severity-value">Severity: {{ severity }}</div>
-
             <div class="range-wrapper">
               <ion-range min="1" max="5" snaps="true" ticks="true" [(ngModel)]="severity">
                 <ion-label slot="start">mild</ion-label>
                 <ion-label slot="end">severe</ion-label>
               </ion-range>
+
+              <div class="range-labels">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+              </div>
             </div>
 
             <div class="voice-box">

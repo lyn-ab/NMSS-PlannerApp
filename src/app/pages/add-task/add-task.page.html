@@ -1,13 +1,63 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>add-task</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="" icon="chevron-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create New Task</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">add-task</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <div class="form-wrapper">
+    <div class="input-group">
+      <ion-label class="main-label">WHAT TASK NEEDS TO BE DONE?</ion-label>
+      <div class="voice-input-wrapper">
+        <ion-input [(ngModel)]="newTask.title" placeholder="e.g., Buy groceries" class="custom-input"></ion-input>
+        <ion-button fill="clear" class="btn-voice" (click)="startVoiceRecognition()">
+          <ion-icon name="mic-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <ion-label class="main-label">CATEGORY</ion-label>
+      <div class="category-grid">
+        <div *ngFor="let cat of categories"
+             class="category-chip"
+             [class.active]="newTask.type === cat.name"
+             (click)="selectCategory(cat)">
+          <ion-icon [name]="cat.icon"></ion-icon>
+          <span>{{ cat.name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="details-card">
+      <div class="detail-row">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="datetime" presentation="date-time" [(ngModel)]="newTask.duedate"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </div>
+
+      <div class="detail-row">
+        <ion-icon name="location-outline"></ion-icon>
+        <ion-input [(ngModel)]="newTask.locationName" placeholder="Location link..."></ion-input>
+      </div>
+
+      <div class="detail-row">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <ion-textarea [(ngModel)]="newTask.userNotes" placeholder="Notes or links..." [autoGrow]="true"></ion-textarea>
+      </div>
+    </div>
+
+    <ion-button expand="block" class="btn-save" (click)="saveTask()">
+      Save Task
+    </ion-button>
+  </div>
+
 </ion-content>

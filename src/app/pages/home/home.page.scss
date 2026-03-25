@@ -190,6 +190,16 @@ ion-searchbar {
   font-weight:700;
   color:#AFAFEF}
 
+.range-labels{
+  display:flex;
+  justify-content:space-between;
+  padding:0 12px;
+  margin-top:8px;
+  color:#AFAFEF;
+  font-weight:700;
+  font-size:.85rem;
+}
+
 /* Highlight slider when severity is high */
 .severity-container.severity-high .range-wrapper ion-range {
   --knob-background: #e282af;
