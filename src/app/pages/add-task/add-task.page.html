@@ -37,9 +37,16 @@
       <div class="detail-row">
         <ion-icon name="calendar-outline"></ion-icon>
         <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
         <ion-modal [keepContentsMounted]="true">
           <ng-template>
-            <ion-datetime id="datetime" presentation="date-time" [(ngModel)]="newTask.duedate"></ion-datetime>
+            <ion-datetime
+              id="datetime"
+              presentation="date-time"
+              [(ngModel)]="newTask.duedate"
+              [min]="minDate"
+              class="custom-calendar">
+            </ion-datetime>
           </ng-template>
         </ion-modal>
       </div>

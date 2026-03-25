@@ -24,12 +24,14 @@ interface Task {
 })
 export class AddTaskPage implements OnInit {
 
+  minDate: string = new Date().toISOString();
+  
   newTask: Task = {
     title: '',
     type: 'General',
     icon: 'list-outline',
     locationName: '',
-    duedate: new Date(),
+    duedate: new Date().toISOString() as any,
     userNotes: '',
     microsteps: []
   };

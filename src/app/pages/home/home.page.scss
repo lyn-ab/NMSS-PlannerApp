@@ -324,3 +324,31 @@ ion-searchbar {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
 }
+
+ion-datetime-button {
+  --background: #292729;
+  --color: #F0F8EA; // Green text
+  border: 1px solid #444;
+  border-radius: 8px;
+
+  &::part(native) {
+    padding: 8px;
+    font-weight: 700;
+  }
+}
+
+/* High contrast for the modal that pops up */
+.custom-calendar {
+  --background: #1a1a1a;
+  --color: #ffffff;
+
+  &::part(calendar-day active) {
+    background: #FAD6E7; // Pink selection
+    color: #000;
+  }
+
+  &::part(time-button) {
+    background: #292729;
+    color: #FAD6E7;
+  }
+}
