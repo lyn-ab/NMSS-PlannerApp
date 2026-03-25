@@ -102,11 +102,86 @@
 }
 
 .btn-save {
-  --background: #d5e9c7; // Pink save button
-  --color: #000; // Black text on pink
+  --background: #d5e9c7;
+  --color: #000;
   --border-radius: 16px;
   height: 56px;
   margin-top: 10px;
   font-weight: 800;
   --box-shadow: 0 4px 15px rgba(250, 214, 231, 0.3);
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px; // Space between grid and 'Other' button
+}
+
+.custom-category-container {
+  margin-top: 24px; // Moves it lower away from the grid
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.custom-button {
+  width: 100%;
+  max-width: 400px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px dashed #ccc;
+
+  &.shrunk {
+    width: 100px; // Shrinks to a small square/rectangle
+    height: 80px;
+    flex-direction: column;
+    border: none;
+    font-size: 0.8rem;
+  }
+}
+
+.custom-edit-area {
+  width: 100%;
+  background: var(--ion-color-light);
+  border-radius: 12px;
+  padding: 10px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.custom-input-item {
+  --background: transparent;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// This targets the list inside the popover specifically
+.icon-popover-content {
+  --background: #333; // Dark background so white icons are visible
+
+  .white-icon {
+    color: white !important; // Forces the icon to be white
+    font-size: 1.4rem;
+  }
+
+  .white-text {
+    color: white;
+  }
+
+  ion-item {
+    --background: transparent;
+    --color: white;
+  }
+}
+
+// Ensure the trigger icon on the main page also stays white
+#icon-popover-trigger {
+  --color: white;
+  background: var(--ion-color-primary); // Put it on a colored background
+  border-radius: 8px;
 }
