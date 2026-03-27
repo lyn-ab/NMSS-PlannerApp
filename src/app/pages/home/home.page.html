@@ -111,8 +111,8 @@
   <div class="task-section">
     <h3>Your Tasks</h3>
     <div class="task-slider">
-      <ng-container *ngIf="tasks.length; else emptyTasks">
-        <ion-card class="task-card" *ngFor="let task of tasks">
+      <ng-container *ngIf="viewTasks.length; else emptyTasks">
+        <ion-card class="task-card" *ngFor="let task of viewTasks">
           <div class="card-inner">
             <div class="header-row">
               <div class="type-badge">

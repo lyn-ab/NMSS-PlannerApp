@@ -32,8 +32,16 @@ export class Firebase {
     return newRef.key as string;
   }
 
-   pushToList(path: string, data: any){
-    return push(ref(this.db, path), data).key;
+  async pushToList(path: string, data: any){
+    try {
+      const dataRef = ref(this.db, path);
+      const newEntryRef = push(dataRef);
+      await set(newEntryRef, data);
+      return newEntryRef.key;
+    } catch (e) {
+      console.error("Error in pushToList:", e);
+      throw e;
+    }
   }
 
   deleteFromList(path: string, key: string){

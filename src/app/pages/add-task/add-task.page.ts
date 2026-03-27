@@ -1,16 +1,21 @@
 import { TestBed } from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
-import { IonicModule, NavController } from "@ionic/angular";
+import { IonicModule, NavController, ToastController } from "@ionic/angular";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Task } from '../../models/task.model';
 import { AlertController } from '@ionic/angular';
 import { IONIC_ICONS } from '../../../assets/data/icon';
-
+import { Firebase } from 'src/app/services/firebase';
+import { initializeApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
+import { SECRET_KEYS } from 'src/environments/config-api';
+import { Persistence } from 'src/app/services/persistence';
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.page.html',
   styleUrls: ['./add-task.page.scss'],
+  standalone: true,
   imports: [IonicModule, CommonModule, FormsModule],
 })
 export class AddTaskPage implements OnInit {
@@ -19,6 +24,8 @@ export class AddTaskPage implements OnInit {
   filteredIcons = [...IONIC_ICONS];
 
   minDate: string = new Date().toISOString();
+
+  db: any;
 
   newTask: Task = {
     title: '',
@@ -39,7 +46,12 @@ export class AddTaskPage implements OnInit {
     { name: 'Chore', icon: 'home-outline' }
   ];
 
-  constructor(private navCtrl: NavController, private alertCtrl: AlertController) { }
+  constructor(private navCtrl: NavController,
+    private alertCtrl: AlertController,
+    private firebase: Firebase,
+    private toastController: ToastController,
+    private persistence: Persistence)
+    {}
 
   ngOnInit() {
   }
@@ -50,10 +62,35 @@ export class AddTaskPage implements OnInit {
   }
 
   async saveTask() {
-    
-    console.log("Saving to Firebase/Local...", this.newTask);
-    // Logic to push to array and navigate back
+  if (!this.newTask.title.trim()) {
+    const alert = await this.alertCtrl.create({
+      header: 'Missing Title',
+      message: 'Please name your task before saving.',
+      buttons: ['OK']
+    });
+    await alert.present();
+    return;
   }
+
+  try {
+    const key = this.firebase.pushToList('tasks', this.newTask);
+    console.log("Task fully saved to Firebase:", key);
+
+    this.persistence.add({...this.newTask, s: key}, 'local'); // Add to local list with the same key for consistency  
+
+    const toast = await this.toastController.create({
+      message: 'Task scheduled successfully!',
+      duration: 2000,
+      color: 'success',
+      position: 'bottom'
+    });
+
+    await toast.present();
+    this.navCtrl.back(); // Go home
+  } catch (error) {
+    console.error("Save failed:", error);
+  }
+}
 
   filterIcons(event: any) {
     const query = event.target.value.toLowerCase();
@@ -64,7 +101,6 @@ export class AddTaskPage implements OnInit {
 
   startCustomEdit() {
     this.isEditingCustom = true;
-    // If starting fresh, set a default icon
     if (!this.isCustomCategorySelected()) {
       this.newTask.icon = 'apps-outline';
       this.newTask.type = '';

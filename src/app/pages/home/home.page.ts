@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 import { SECRET_KEYS } from 'src/environments/config-api';
 import { GeminiService } from 'src/app/services/gemini';
 import { Task } from '../../models/task.model';
+import { Firebase } from 'src/app/services/firebase';
+import { Persistence } from 'src/app/services/persistence';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +25,8 @@ export class HomePage implements OnInit {
 
   allSymptoms = symptomsData.symptoms;
 
+  viewTasks: Task[] = [];
+
   searchTerm = '';
   selectedSymptom: any = null;
   severity = 3;
@@ -31,7 +35,6 @@ export class HomePage implements OnInit {
 
   filteredList: any[] = [];
 
-    // Inside your HomePage class
   currentTime: string = '';
   currentMonthYear: string = '';
   weekDays: any[] = [];
@@ -39,40 +42,29 @@ export class HomePage implements OnInit {
 
   greeting : string = '';
 
+  selectedTaskForModal: Task | null = null;
+
   userProfile = {
-    userName: 'Alex',
+    userName: 'Jenna',
     conditions: ['Chronic Fatigue Syndrome', 'POTS'],
     triggers: ['Bright lights', 'Long standing'],
     currentEnergy: 'Low',
     preferences: 'Quiet environments, needs frequent sitting breaks'
   };
 
-  tasks: Task[] = [
-    new Task(
-      'Weekly Sync',
-      'Meeting', 'videocam',
-      'Google Meet',
-      new Date(new Date().getTime() + 60 * 60 * 1000),
-      'I am feeling very brain-foggy today.'),
 
-    new Task(
-      'Pharmacy Pickup',
-      'Refill',
-      'medkit',
-      'Life Pharmacy',
-      new Date(new Date().getTime() + 60 * 60 * 1000),
-      'The pharmacy is usually crowded and hot.')
-  ];
-
-  selectedTaskForModal: Task | null = null;
 
   constructor(
     private languageService: Language,
     private http: HttpClient,
     private accessibility: AccessibilityService,
     private toastController: ToastController,
-    private geminiService: GeminiService) {
+    private geminiService: GeminiService,
+    private firebase: Firebase,
+    private persistence: Persistence
+  ) {
     this.loadSymptoms();
+     this.persistence.listen(); // Start listening to Firebase changes
    }
 
   ngOnInit() {
@@ -84,6 +76,20 @@ export class HomePage implements OnInit {
     // Update time every minute
     this.timer = setInterval(() => this.updateClock(), 60000);
     this.setGreeting();
+
+    
+
+  }
+
+  ionViewWillEnter() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.viewTasks = this.persistence.getLocalList() || [];
+    this.viewTasks = this.persistence.getRemoteList();
+
+    console.log("Home Page loaded tasks:", this.viewTasks);
   }
 
   ngOnDestroy() {
@@ -96,23 +102,23 @@ export class HomePage implements OnInit {
     this.currentMonthYear = now.toLocaleDateString([], { month: 'long', year: 'numeric' });
   }
 
-generateWeek() {
-  const now = new Date();
-  const startOfWeek = new Date(now);
-  // Get Sunday of the current week
-  startOfWeek.setDate(now.getDate() - now.getDay());
+  generateWeek() {
+    const now = new Date();
+    const startOfWeek = new Date(now);
+    // Get Sunday of the current week
+    startOfWeek.setDate(now.getDate() - now.getDay());
 
-  this.weekDays = [];
-  for (let i = 0; i < 7; i++) {
-    const tempDate = new Date(startOfWeek);
-    tempDate.setDate(startOfWeek.getDate() + i);
-    this.weekDays.push({
-      dayName: tempDate.toLocaleDateString([], { weekday: 'short' }), // "Mon", "Tue"
-      dateNumber: tempDate.getDate(),
-      isToday: tempDate.toDateString() === now.toDateString()
-    });
+    this.weekDays = [];
+    for (let i = 0; i < 7; i++) {
+      const tempDate = new Date(startOfWeek);
+      tempDate.setDate(startOfWeek.getDate() + i);
+      this.weekDays.push({
+        dayName: tempDate.toLocaleDateString([], { weekday: 'short' }), // "Mon", "Tue"
+        dateNumber: tempDate.getDate(),
+        isToday: tempDate.toDateString() === now.toDateString()
+      });
+    }
   }
-}
 
   loadSymptoms(){
     this.http.get<any>('assets/data/symptoms.json').subscribe(data => {
