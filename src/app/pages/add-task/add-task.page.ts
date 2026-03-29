@@ -7,9 +7,6 @@ import { Task } from '../../models/task.model';
 import { AlertController } from '@ionic/angular';
 import { IONIC_ICONS } from '../../../assets/data/icon';
 import { Firebase } from 'src/app/services/firebase';
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
-import { SECRET_KEYS } from 'src/environments/config-api';
 import { Persistence } from 'src/app/services/persistence';
 @Component({
   selector: 'app-add-task',
@@ -76,7 +73,7 @@ export class AddTaskPage implements OnInit {
     const key = this.firebase.pushToList('tasks', this.newTask);
     console.log("Task fully saved to Firebase:", key);
 
-    this.persistence.add({...this.newTask, s: key}, 'local'); // Add to local list with the same key for consistency  
+    this.persistence.add({...this.newTask, s: key}, 'local'); // Add to local list with the same key for consistency
 
     const toast = await this.toastController.create({
       message: 'Task scheduled successfully!',
