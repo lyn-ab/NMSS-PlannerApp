@@ -1,79 +1,41 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
-/*const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
+export const routes: Routes = [
+  // Default: redirect to login
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'add-task',
-    loadChildren: () => import('./pages/add-task/add-task.module').then( m => m.AddTaskPageModule)
-  },
-  {
-    path: 'calendar',
-    loadChildren: () => import('./pages/calendar/calendar.module').then( m => m.CalendarPageModule)
-  },
-  {
-    path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
-  },
-  {
-    path: 'patient-services',
-    loadChildren: () => import('./pages/patient-services/patient-services.module').then( m => m.PatientServicesPageModule)
-  },
+
+  // Login (your page)
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
   },
-];
-*/
 
-const routes: Routes = [
+  // Setup (your page — lives at src/app/setup.page.ts, NOT inside /pages/)
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'setup',
+    loadComponent: () => import('./pages/setup.page').then(m => m.SetupPage)
   },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
-  },
+
+  // Home (teammate's page)
   {
     path: 'home',
-  loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage)
+    loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage)
   },
-  {
-    path: 'add-task',
-    loadChildren: () => import('./pages/add-task/add-task.module').then(m => m.AddTaskPageModule)
-  },
+
+  // Calendar (your page — CHANGED from loadChildren module to standalone component)
+  // Make sure calendar.page.ts uses "standalone: true" (the file I gave you does)
   {
     path: 'calendar',
-    loadChildren: () => import('./pages/calendar/calendar.module').then(m => m.CalendarPageModule)
+    loadComponent: () => import('./pages/calendar/calendar.page').then(m => m.CalendarPage)
   },
-  {
-    path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
-  },
-  {
-    path: 'patient-services',
-    loadChildren: () => import('./pages/patient-services/patient-services.module').then(m => m.PatientServicesPageModule)
-  }
-];
 
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+  // Add-task — leave this for your teammate, or add when ready
+  // {
+  //   path: 'add-task',
+  //   loadComponent: () => import('./pages/add-task/add-task.page').then(m => m.AddTaskPage)
+  // },
+];

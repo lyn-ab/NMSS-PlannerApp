@@ -1,0 +1,162 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title class="setup-header-title">Setup Profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <!-- scrollY="true" is explicit — fixes the scroll being blocked on some Ionic versions -->
+  <ion-content [fullscreen]="true" [scrollY]="true" [scrollEvents]="true">
+    <div class="setup-wrapper">
+  
+      <!-- Progress -->
+      <div class="progress-section">
+        <div class="progress-labels">
+          <span class="step-text">Step {{ currentStep }} of {{ totalSteps }}</span>
+          <span class="step-pct">{{ Math.round((currentStep / totalSteps) * 100) }}%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" [style.width.%]="(currentStep / totalSteps) * 100"></div>
+        </div>
+      </div>
+  
+      <!-- STEP 1: Basic Info -->
+      <div class="step-card" *ngIf="currentStep === 1">
+        <h2 class="step-title">About You</h2>
+        <p class="step-sub">Let's start with some basic information.</p>
+  
+        <div class="field-block">
+          <label class="field-label">Age</label>
+          <div class="native-input-wrap">
+            <input type="number" inputmode="numeric" placeholder="e.g. 34"
+              [(ngModel)]="formData.age" class="native-input" min="1" max="120" />
+          </div>
+        </div>
+  
+        <div class="field-block">
+          <label class="field-label">Gender</label>
+          <div class="chip-row">
+            <button *ngFor="let g of genderOptions" class="chip"
+              [class.chip--on]="formData.gender === g"
+              (click)="formData.gender = g" type="button">{{ g }}</button>
+          </div>
+        </div>
+  
+        <div class="field-row">
+          <div class="field-block field-block--half">
+            <label class="field-label">Height (cm)</label>
+            <div class="native-input-wrap">
+              <input type="number" inputmode="numeric" placeholder="170"
+                [(ngModel)]="formData.height" class="native-input" />
+            </div>
+          </div>
+          <div class="field-block field-block--half">
+            <label class="field-label">Weight (kg)</label>
+            <div class="native-input-wrap">
+              <input type="number" inputmode="numeric" placeholder="68"
+                [(ngModel)]="formData.weight" class="native-input" />
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- STEP 2: Symptoms -->
+      <div class="step-card" *ngIf="currentStep === 2">
+        <h2 class="step-title">Your Symptoms</h2>
+        <p class="step-sub">Select all that apply. This helps us personalise your experience.</p>
+  
+        <div class="checklist">
+          <label *ngFor="let s of symptomOptions" class="check-row"
+            [class.check-row--on]="formData.symptoms.includes(s)">
+            <input type="checkbox" [checked]="formData.symptoms.includes(s)"
+              (change)="toggle(formData.symptoms, s)" />
+            <span class="check-box"></span>
+            <span class="check-text">{{ s }}</span>
+          </label>
+        </div>
+  
+        <div class="field-block">
+          <label class="field-label">Other (optional)</label>
+          <div class="native-input-wrap">
+            <input type="text" placeholder="Describe any other symptom"
+              [(ngModel)]="formData.otherSymptom" class="native-input" />
+          </div>
+        </div>
+      </div>
+  
+      <!-- STEP 3: Triggers -->
+      <div class="step-card" *ngIf="currentStep === 3">
+        <h2 class="step-title">Your Triggers</h2>
+        <p class="step-sub">What tends to worsen your symptoms?</p>
+  
+        <div class="checklist">
+          <label *ngFor="let t of triggerOptions" class="check-row"
+            [class.check-row--on]="formData.triggers.includes(t)">
+            <input type="checkbox" [checked]="formData.triggers.includes(t)"
+              (change)="toggle(formData.triggers, t)" />
+            <span class="check-box"></span>
+            <span class="check-text">{{ t }}</span>
+          </label>
+        </div>
+  
+        <div class="field-block">
+          <label class="field-label">Other (optional)</label>
+          <div class="native-input-wrap">
+            <input type="text" placeholder="Describe any other trigger"
+              [(ngModel)]="formData.otherTrigger" class="native-input" />
+          </div>
+        </div>
+      </div>
+  
+      <!-- STEP 4: Medications -->
+      <div class="step-card" *ngIf="currentStep === 4">
+        <h2 class="step-title">Medications and Care</h2>
+        <p class="step-sub">Optional. You can always update this later.</p>
+  
+        <div class="field-block">
+          <label class="field-label">Current Medications</label>
+          <div class="native-input-wrap">
+            <textarea placeholder="e.g. Tecfidera, Baclofen"
+              [(ngModel)]="formData.medications"
+              class="native-input native-textarea" rows="3"></textarea>
+          </div>
+        </div>
+  
+        <div class="field-block">
+          <label class="field-label">Doctor or Neurologist Name</label>
+          <div class="native-input-wrap">
+            <input type="text" placeholder="e.g. Dr. Sarah Al Hamdan"
+              [(ngModel)]="formData.doctorName" class="native-input" />
+          </div>
+        </div>
+  
+        <div class="field-block">
+          <label class="field-label">Clinic or Hospital</label>
+          <div class="native-input-wrap">
+            <input type="text" placeholder="e.g. Sheikh Khalifa Medical City"
+              [(ngModel)]="formData.clinic" class="native-input" />
+          </div>
+        </div>
+      </div>
+  
+      <!-- Error message -->
+      <div class="error-bar" *ngIf="errorMsg">{{ errorMsg }}</div>
+  
+      <!-- Bottom spacer so content scrolls above sticky nav -->
+      <div class="nav-spacer"></div>
+  
+    </div>
+  </ion-content>
+  
+  <!-- Sticky nav — outside ion-content so it never scrolls -->
+  <div class="nav-bar">
+    <div class="nav-row">
+      <button class="btn btn--back" *ngIf="currentStep > 1"
+        (click)="prevStep()" type="button">Back</button>
+      <button class="btn btn--next" *ngIf="currentStep < totalSteps"
+        (click)="nextStep()" type="button">Continue</button>
+      <button class="btn btn--save" *ngIf="currentStep === totalSteps"
+        (click)="saveProfile()" [disabled]="saving" type="button">
+        {{ saving ? 'Saving...' : 'Get Started' }}
+      </button>
+    </div>
+  </div>

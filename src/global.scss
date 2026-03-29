@@ -1,118 +1,32 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
-
-/* Core CSS required for Ionic components to work properly */
+/* Ionic Core CSS */
 @import "@ionic/angular/css/core.css";
 
-/* Basic CSS for apps built with Ionic */
+/* Basic CSS */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
 
-/* Optional CSS utils that can be commented out */
+/* Optional CSS (REQUIRED for proper layout) */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+@import "@ionic/angular/css/display.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+/* Dark theme (YOU ARE USING DARK UI) */
+@import "@ionic/angular/css/palettes/dark.always.css";
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+// ADD THESE LINES to your global styles.scss file (src/styles.scss)
+// This fixes ion-content scroll for ALL pages at once
+// ADD THESE LINES to your global styles.scss file (src/styles.scss)
+// This fixes ion-content scroll for ALL pages at once
 
-/* --- 1. THE LAYOUT FIX --- */
-/* --- 1. THE LAYOUT FIX --- */
-/* 1. Target the main container from your Inspect tool */
-ion-tabs {
-  pointer-events: none !important; /* Let clicks pass through the 'glass wall' */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
+iion-content {
+  --overflow: scroll;
 }
 
-/* 2. Target the inner div shown in your code */
-.tabs-inner {
-  pointer-events: none !important;
-  flex: 1;
-}
-
-/* 3. Re-enable clicks for your ACTUAL page content */
-ion-router-outlet {
-  pointer-events: auto !important;
-  display: block;
-  position: relative;
-}
-
-/* 4. Re-enable clicks for the Bottom Bar */
-.custom-tab-bar {
-  --background: #020202;
-  pointer-events: auto !important; /* Crucial: Makes buttons clickable again */
-  z-index: 999;
-  height: 75px;
-}
-
-/* 5. The Rest of your Button/Toast Styles (Keep these as they were) */
-ion-tab-button {
-  --color: #E8F0E2;      /* Inactive: Soft Sage */
-  --color-selected: #020202; /* Active: Pitch Black icon */
-  --padding-top: 8px;
-  --padding-bottom: 8px;
-
-  .indicator-box {
-    width: 60px;         /* Increased from 50px */
-    height: 42px;        /* Increased from 40px */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: transparent;
-
-    ion-icon {
-      font-size: 28px;   /* Increased from 24px - Makes them pop! */
-      --stroke-width: 40px; /* Makes the outline a bit thicker/bolder */
-    }
-  }
-
-  ion-label {
-    font-size: 11px;     /* Slightly larger for readability */
-    font-weight: 700;
-    margin-top: 4px;
-    letter-spacing: 0.3px;
-  }
-
-  /* When Selected: The "Discord" Pop */
-  &.tab-selected {
-    .indicator-box {
-      background: #AFAFEF; /* Lilac Square */
-      border-radius: 14px; /* Distinct square shape */
-      transform: scale(1.1); /* Slight "growth" effect for feedback */
-      box-shadow: 0 4px 15px rgba(175, 175, 239, 0.3);
-    }
-
-    ion-label {
-      color: #AFAFEF;
-      opacity: 1;
-    }
-  }
+ion-content::part(scroll) {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
 }

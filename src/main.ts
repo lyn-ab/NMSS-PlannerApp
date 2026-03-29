@@ -1,8 +1,9 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app-routing.module';
 
 import { addIcons } from 'ionicons';
-
 import {
   homeOutline,
   addCircleOutline,
@@ -17,5 +18,6 @@ addIcons({
   'medical-outline': medicalOutline
 });
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)]
+});

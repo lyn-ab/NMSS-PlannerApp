@@ -1,73 +1,94 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Good Morning!</ion-title>
+    <ion-title class="home-title">Good Morning!</ion-title>
     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-button (click)="logout()" aria-label="Sign out">
+        <ion-icon name="person-circle-outline" class="profile-icon"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <div class="greeting-section">
-    <h1>How are you feeling today?</h1>
-    <div class="action-buttons" style="display: flex; align-items: center; gap: 10px;">
-      <ion-button (click)="openSymptomLogger()" shape="round" style="flex: 1;">
-        Log Symptoms
-      </ion-button>
-      <ion-fab-button size="small" color="secondary">
-        <ion-icon name="mic"></ion-icon>
-      </ion-fab-button>
+<ion-content [fullscreen]="true" class="home-content">
+  <div class="home-wrapper">
+
+    <!-- Greeting -->
+    <div class="greeting-section">
+      <h1 class="greeting-heading">How are you feeling today?</h1>
+      <div class="action-buttons">
+        <button class="log-btn" (click)="openSymptomLogger()">
+          <ion-icon name="pulse-outline"></ion-icon>
+          Log Symptoms
+        </button>
+        <button class="mic-btn" (click)="playGreeting()">
+          <ion-icon name="mic-outline"></ion-icon>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div class="task-section">
-    <h3>Your Tasks</h3>
-    <div class="task-slider">
-      @for (task of tasks; track task.title) {
-        <ion-card class="task-card">
-          <div class="card-inner">
-            <div class="header-row">
-              <div class="type-badge">
-                <ion-icon [name]="task.icon"></ion-icon>
-                <span>{{ task.type }}</span>
+    <!-- Tasks -->
+    <div class="task-section">
+      <h3 class="section-title">Your Tasks</h3>
+      <div class="task-slider">
+        @for (task of tasks; track task.title) {
+          <div class="task-card">
+            <div class="card-inner">
+              <div class="header-row">
+                <div class="type-badge">
+                  <ion-icon [name]="task.icon"></ion-icon>
+                  <span>{{ task.type }}</span>
+                </div>
+                <ion-icon name="ellipsis-horizontal" class="dots-icon"></ion-icon>
               </div>
-              <ion-icon name="ellipsis-horizontal" class="dots-icon"></ion-icon>
-            </div>
-
-            <h2 class="task-title">{{ task.title }}</h2>
-
-            <div class="tag-row">
-              <span class="upcoming-tag">#upcoming</span>
-            </div>
-
-            <div class="button-action-row">
-              <button class="btn-micro" (click)="generateSteps(task)">
-                <ion-icon name="sparkles-outline"></ion-icon>
-                Generate microsteps
-              </button>
-            </div>
-
-            <div class="footer-row">
-              <div class="location-info">
-                <ion-icon name="location-sharp"></ion-icon>
-                <span>{{ task.locationName }}</span>
+              <h2 class="task-title">{{ task.title }}</h2>
+              <div class="tag-row">
+                <span class="upcoming-tag">#upcoming</span>
               </div>
-
-              <button class="btn-skip" (click)="skipTask(task)">Skip</button>
+              <div class="button-action-row">
+                <button class="btn-micro" (click)="generateSteps(task)">
+                  <ion-icon name="sparkles-outline"></ion-icon>
+                  Generate microsteps
+                </button>
+              </div>
+              <div class="footer-row">
+                <div class="location-info">
+                  <ion-icon name="location-sharp"></ion-icon>
+                  <span>{{ task.locationName }}</span>
+                </div>
+                <button class="btn-skip" (click)="skipTask(task)">Skip</button>
+              </div>
             </div>
           </div>
-        </ion-card>
-      } @empty {
-        <p class="ion-padding ion-text-center">No tasks for today. Rest up!</p>
-      }
+        } @empty {
+          <p class="empty-tasks">No tasks for today. Rest up!</p>
+        }
+      </div>
     </div>
-  </div>
 
-  <div class="milestone-section">
-    <h4>Daily Progress</h4>
-    <ion-progress-bar [value]="progressValue"></ion-progress-bar>
-    <p class="affirmation-text">{{ affirmation }}</p>
+    <!-- Progress -->
+    <div class="milestone-section">
+      <h4 class="progress-title">Daily Progress</h4>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="progressValue * 100"></div>
+      </div>
+      <p class="affirmation-text">{{ affirmation }}</p>
+    </div>
+
   </div>
 </ion-content>
+
+<!-- ✅ FIXED: plain div nav bar using router.navigate — works with any routing setup -->
+<div class="bottom-nav">
+  <button class="nav-btn" (click)="goTo('/home')" [class.nav-btn--active]="true">
+    <ion-icon name="home-outline"></ion-icon>
+    <span>Home</span>
+  </button>
+  <button class="nav-btn" (click)="goTo('/calendar')">
+    <ion-icon name="calendar-outline"></ion-icon>
+    <span>Calendar</span>
+  </button>
+  <button class="nav-btn" (click)="goTo('/add-task')">
+    <ion-icon name="add-circle-outline"></ion-icon>
+    <span>Add Task</span>
+  </button>
+</div>
