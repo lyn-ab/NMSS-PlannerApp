@@ -70,7 +70,7 @@ testem.log
 Thumbs.db
 
 #ignore api keys
-/src/environments/config-api.ts
+src/environments/config-api.ts
 
 # Firebase
 .firebase

@@ -7,21 +7,25 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
+// ── IMPORT THE HIDDEN KEYS ──────────────────────────────────────────
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { SECRET_KEYS } from 'src/environments/config-api';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-provideFirebaseApp(() => initializeApp({
-  projectId: "nmss-plannerapp",
-  appId: "1:649323939819:web:089ca9f15389a2c6457bae",
-  storageBucket: "nmss-plannerapp.firebasestorage.app",
-  apiKey: "AIzaSyDyB009jq0hAYhAxRIOUXCWi22j1HTnrdQ",
-  authDomain: "nmss-plannerapp.firebaseapp.com",
-  messagingSenderId: "649323939819"
-})), provideAuth(() => getAuth())],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    provideFirebaseApp(() => initializeApp(SECRET_KEYS.firebaseConfig)),
+    provideAuth(() => getAuth())
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
