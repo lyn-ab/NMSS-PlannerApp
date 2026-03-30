@@ -7,8 +7,9 @@ import { IonicModule } from '@ionic/angular';
 // ── IMPORTANT: adjust this path to match where firebase.config.ts actually is
 // If setup.page.ts is in src/app/pages/ → use '../../firebase.config'
 // If setup.page.ts is in src/app/       → use './firebase.config'
-import { app } from './../firebase.config';
-
+import { SECRET_KEYS } from 'src/environments/config-api';
+import { initializeApp } from 'firebase/app';
+const app = initializeApp(SECRET_KEYS.firebaseConfig);
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
