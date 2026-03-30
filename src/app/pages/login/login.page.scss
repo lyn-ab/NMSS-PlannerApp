@@ -1,0 +1,190 @@
+// ── NMSS Planner · Login Page ────────────────────────────────────────────────
+
+$bg:          #12121a;
+$bg-card:     #37375b;
+$bg-input:    #252540;
+$border:      #2e2e50;
+$accent:      #7c6af7;
+$accent-soft: rgba(124, 106, 247, 0.15);
+$accent-2:    #a78bfa;
+$text-1:      #ffffff;
+$text-2:      #d4cef5;
+$text-3:      #d9d3f7;
+$radius:      20px;
+$radius-sm:   14px;
+$font:        'Inter', 'DM Sans', system-ui, sans-serif;
+
+:host {
+  --ion-background-color: #{$bg};
+  --ion-font-family: #{$font};
+  display: block;
+}
+
+.login-content {
+  --background: #{$bg};
+  font-family: $font;
+}
+
+// ── Full-height centered layout ───────────────────────────────────────────
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 48px 24px 56px;
+  gap: 28px;
+  max-width: 420px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+// ── Brand block ───────────────────────────────────────────────────────────
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.brand-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, $accent, $accent-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 40px rgba(124, 106, 247, 0.5);
+
+  ion-icon {
+    font-size: 38px;
+    color: #fff;
+  }
+}
+
+.brand-name {
+  font-size: 40px;
+  font-weight: 800;
+  color: $text-1;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+.brand-tagline {
+  font-size: 15px;
+  color: $text-2;
+  margin: 0;
+  line-height: 1.6;
+}
+
+// ── Login card ────────────────────────────────────────────────────────────
+.login-card {
+  width: 100%;
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: $radius;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: rise 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-title {
+  font-size: 25px;
+  font-weight: 800;
+  color: $text-1;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.login-sub {
+  font-size: 16px;
+  color: $text-2;
+  margin: -8px 0 4px;
+  line-height: 1.55;
+}
+
+// ── Google button ─────────────────────────────────────────────────────────
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: $radius-sm;
+  border: 1.5px solid $border;
+  background: $bg-input;
+  color: $text-1;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: $font;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  min-height: 56px;
+  box-sizing: border-box;
+
+  &:hover {
+    border-color: $accent;
+    background: $accent-soft;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(124, 106, 247, 0.25);
+  }
+
+  &:active { transform: translateY(0); }
+}
+
+.google-logo {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+// ── Disclaimer ────────────────────────────────────────────────────────────
+.login-disclaimer {
+  font-size: 15px;
+  font-weight: 500;
+  color: $text-3;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────
+.login-footer {
+  font-size: 15px;
+  color: $text-3;
+  text-align: center;
+  margin: 0;
+}
+
+// ── Popup hint ────────────────────────────────────────────────────────────
+.popup-hint {
+  font-size: 15px;
+  color: #a78bfa;
+  background: rgba(124, 106, 247, 0.1);
+  border: 1px solid rgba(124, 106, 247, 0.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.error-bar {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #f59e0b;
+  line-height: 1.5;
+  margin: 0;
+}

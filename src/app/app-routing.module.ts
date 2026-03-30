@@ -4,12 +4,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
   },
   {
     path: 'home',
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'calendar',
-    loadChildren: () => import('./pages/calendar/calendar.module').then(m => m.CalendarPageModule)
+    loadComponent: () => import('./pages/calendar/calendar.page').then(m => m.CalendarPage)
   },
   {
     path: 'settings',

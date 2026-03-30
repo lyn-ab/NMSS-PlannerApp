@@ -356,7 +356,7 @@ ion-datetime-button {
 }
 
 .mini-calendar-container {
-  background: var(--palette-black); // Pitch Black
+  background: #121212; // Pitch Black
   padding: 10px 0 25px 0;
   border-bottom: 1px solid rgba(168, 168, 236, 0.1); // Subtle Lilac border
 
@@ -424,7 +424,7 @@ ion-datetime-button {
       box-shadow: 0 0 15px rgba(226, 130, 175, 0.4);
 
       .day-label, .day-number {
-        color: var(--palette-black); // High contrast text on pink circle
+        color: #121212; // High contrast text on pink circle
       }
     }
   }

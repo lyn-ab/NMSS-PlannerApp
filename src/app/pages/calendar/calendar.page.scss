@@ -1,0 +1,635 @@
+// ── NMSS Planner · Accessible Combined Stylesheet ─────────────────────────
+// Colors preserved exactly from your original palette (Document 1)
+// Layout & structure improvements from Document 2
+// Accessibility upgrades throughout for MS-related vision impairment
+
+// ── Color Palette (Your Original) ─────────────────────────────────────────
+$bg-black:     #000000;   // Deep Black – main background
+$bg-card:      #1a1a1a;   // Card surfaces
+$bg-input:     #292729;   // Inputs / chips
+$border-color: #3d3d3d;   // Subtle border (boosted opacity vs original)
+$pale-green:   #F0F8EA;   // Primary label / heading text
+$mint-green:   #d5e9c7;   // Focus / action color
+$lilac-accent: #AFAFEF;   // Icon / accent
+$lilac-active: #B1B0ED;   // Selected state background
+$lilac-soft:   rgba(175, 175, 239, 0.15); // Soft glow for focus rings
+$done-color:   #6ee7b7;   // Completed task checkmark
+$error-color:  #f59e0b;   // Warnings / delete hover
+$font-main:    'Inter', 'DM Sans', system-ui, sans-serif;
+
+// ── Accessibility Variables ────────────────────────────────────────────────
+// Minimum touch target: 48px (WCAG 2.5.5)
+// Base font size boosted to 18px (up from 16px)
+// Line height 1.7 for readability
+// Letter spacing slightly loosened for low-vision users
+
+// ── Reset & Base ───────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; }
+
+:host {
+  --ion-background-color: #{$bg-black};
+  --ion-font-family: #{$font-main};
+  display: block;
+}
+
+ion-content {
+  --background: #{$bg-black};
+  --overflow: scroll;
+}
+
+ion-content::part(scroll) {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+// ── Layout Wrapper ─────────────────────────────────────────────────────────
+.cal-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px 20px 120px;
+  background: $bg-black;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+// ── Page Title ─────────────────────────────────────────────────────────────
+.cal-title {
+  color: $pale-green;
+  font-size: 26px;          // +2px from original
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+// ── Month Navigation ───────────────────────────────────────────────────────
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .month-label {
+    font-size: 20px;         // Larger for low vision
+    font-weight: 700;
+    color: $pale-green;
+    letter-spacing: -0.01em;
+  }
+}
+
+.nav-arrow {
+  width: 48px;               // WCAG touch target minimum
+  height: 48px;
+  border-radius: 14px;
+  background: $bg-input;
+  border: 1.5px solid $border-color;
+  color: $lilac-accent;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+
+  &:hover  { border-color: $lilac-accent; }
+  &:active { transform: scale(0.95); background: $bg-black; }
+
+  // Visible focus ring for keyboard/switch access
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px $lilac-soft;
+    border-color: $lilac-accent;
+  }
+}
+
+// ── Day Strip ──────────────────────────────────────────────────────────────
+.day-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 12px;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.day-pill {
+  min-width: 60px;           // Wider for easier tapping
+  background: $bg-input;
+  border: 1.5px solid $border-color;
+  border-radius: 16px;
+  padding: 14px 10px;        // More vertical padding
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+
+  .day-letter {
+    font-size: 11px;          // Slightly larger than original 0.7rem
+    color: #aaa;              // Boosted from #999 for contrast
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .day-num {
+    font-size: 20px;          // Up from 1.1rem / 18px
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  // Dot for days with tasks
+  .day-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: $lilac-accent;
+    position: absolute;
+    bottom: 7px;
+  }
+
+  &--today:not(.day-pill--selected) {
+    border-color: $mint-green;
+    .day-num { color: $mint-green; }
+  }
+
+  &--selected {
+    background: $lilac-active;
+    border-color: $lilac-active;
+    transform: scale(1.05);
+    .day-letter, .day-num { color: #000; }
+    .day-dot { background: rgba(0, 0, 0, 0.45); }
+  }
+
+  &:hover:not(.day-pill--selected) { border-color: $lilac-accent; }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px $lilac-soft;
+  }
+}
+
+// ── Section Header ─────────────────────────────────────────────────────────
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-date {
+  font-size: 22px;
+  font-weight: 800;
+  color: $pale-green;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+// ── Add Task Button ────────────────────────────────────────────────────────
+.add-btn {
+  background: $mint-green;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: $font-main;
+  cursor: pointer;
+  min-height: 48px;          // Touch target
+  transition: all 0.2s;
+
+  &:hover { filter: brightness(1.08); }
+  &:active { transform: scale(0.97); }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(213, 233, 199, 0.35);
+  }
+}
+
+// ── Reminder Card ──────────────────────────────────────────────────────────
+.reminder-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(175, 175, 239, 0.08);
+  border: 1px solid rgba(175, 175, 239, 0.25);
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 15px;           // Up from 13px
+  color: #ccc;               // Lighter than original $text-2
+  line-height: 1.6;
+
+  .reminder-dot {
+    width: 9px;
+    height: 9px;
+    min-width: 9px;
+    border-radius: 50%;
+    background: $lilac-accent;
+  }
+
+  strong { color: $lilac-accent; font-weight: 700; }
+}
+
+// ── Task List ──────────────────────────────────────────────────────────────
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// ── Task Card ──────────────────────────────────────────────────────────────
+.task-card {
+  background: $bg-card;
+  border-radius: 20px;
+  padding: 18px 18px 18px 16px;
+  border: 1px solid $bg-input;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: opacity 0.2s, border-color 0.2s;
+
+  &--done {
+    opacity: 0.45;
+    background: transparent;
+    border: 1px dashed $border-color;
+
+    .task-title {
+      text-decoration: line-through;
+      color: #666;
+    }
+
+    .check-circle {
+      background: $done-color;
+      border-color: $done-color;
+      .check-mark { color: #000; }
+    }
+  }
+}
+
+// ── Checkbox ──────────────────────────────────────────────────────────────
+.task-check {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 3px;
+  flex-shrink: 0;
+
+  &:focus-visible {
+    outline: none;
+    .check-circle { box-shadow: 0 0 0 3px $lilac-soft; }
+  }
+}
+
+.check-circle {
+  width: 28px;               // Up from 24–26px for easier tapping
+  height: 28px;
+  border-radius: 9px;        // Square-ish, matching original
+  border: 2px solid $border-color;
+  background: $bg-input;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s;
+
+  &:hover { border-color: $done-color; }
+
+  &.active {
+    background: $lilac-active;
+    border-color: $lilac-active;
+    .check-mark { color: #000; }
+  }
+}
+
+.check-mark {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+}
+
+// ── Task Body Text ─────────────────────────────────────────────────────────
+.task-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-title {
+  color: $pale-green;
+  font-weight: 700;
+  font-size: 17px;           // Up from 1.05rem / ~17px (now explicit)
+  line-height: 1.4;
+  margin: 0;
+}
+
+.task-meta {
+  color: $lilac-accent;
+  font-size: 14px;           // Up from 13px
+  font-weight: 500;
+  margin: 0;
+}
+
+.meta-sep { color: #555; }
+
+.task-note {
+  color: #b0b0b0;            // Brighter than original #999
+  font-size: 14px;           // Up from 13px
+  line-height: 1.5;
+  margin: 0;
+}
+
+// ── Delete Button ──────────────────────────────────────────────────────────
+.task-del {
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px 8px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 8px;
+  transition: color 0.18s;
+
+  &:hover { color: $error-color; }
+  &:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.35); }
+}
+
+// ── Empty State ────────────────────────────────────────────────────────────
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 56px 20px;
+  text-align: center;
+}
+
+.empty-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: $bg-card;
+  border: 1px solid $border-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon  { font-size: 30px; color: #555; }
+
+.empty-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #ccc;
+  margin: 0;
+}
+
+.empty-sub {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+  strong { color: $lilac-accent; }
+}
+
+// ── Bottom Sheet Overlay ────────────────────────────────────────────────────
+// Uses min-height wrapper (not fixed) for iframe compatibility
+.sheet-overlay {
+  min-height: 480px;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: flex-end;
+  border-radius: inherit;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.sheet-card {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: $bg-card;
+  border: 1px solid $border-color;
+  border-radius: 28px 28px 0 0;
+  padding: 20px 22px 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: sheetUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes sheetUp {
+  from { transform: translateY(80px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.sheet-handle {
+  width: 44px;
+  height: 5px;
+  border-radius: 99px;
+  background: $border-color;
+  margin: 0 auto 2px;
+}
+
+.sheet-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: $pale-green;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.sheet-error {
+  font-size: 14px;
+  color: $error-color;
+  margin: 0;
+  font-weight: 600;
+}
+
+.sheet-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+// ── Form Fields ────────────────────────────────────────────────────────────
+.field-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.field-label {
+  font-size: 12px;           // Up from 11px
+  font-weight: 700;
+  color: #aaa;               // Brighter than original $text-3
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.native-input-wrap {
+  background: $bg-input;
+  border: 1.5px solid $border-color;
+  border-radius: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  padding: 2px 16px;
+
+  &:focus-within {
+    border-color: $mint-green;
+    box-shadow: 0 0 0 3px rgba(213, 233, 199, 0.15);
+  }
+}
+
+.native-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 17px;           // Up from 16px – easier to read while typing
+  font-family: $font-main;
+  padding: 16px 0;           // Taller input area
+  line-height: 1.5;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &::placeholder { color: #666; }
+}
+
+// ── Category Chips ─────────────────────────────────────────────────────────
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  padding: 11px 18px;
+  border-radius: 99px;
+  border: 1.5px solid $border-color;
+  background: $bg-input;
+  color: #ccc;               // Brighter than original $text-2
+  font-size: 14px;           // Up from 13px
+  font-weight: 600;
+  font-family: $font-main;
+  cursor: pointer;
+  min-height: 44px;          // Touch target
+  transition: all 0.18s;
+
+  &--on {
+    background: $lilac-active;
+    border-color: $lilac-active;
+    color: #000;
+  }
+
+  &:hover:not(.chip--on) { border-color: $lilac-accent; color: $pale-green; }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px $lilac-soft;
+  }
+}
+
+// ── Buttons ────────────────────────────────────────────────────────────────
+.btn {
+  padding: 16px 26px;
+  border-radius: 16px;
+  font-size: 16px;           // Up from 15px
+  font-weight: 700;
+  font-family: $font-main;
+  cursor: pointer;
+  border: none;
+  min-height: 52px;          // Touch target
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+
+  &--cancel {
+    background: $bg-input;
+    color: #ccc;
+    border: 1.5px solid $border-color;
+    &:hover { border-color: $lilac-accent; color: $pale-green; }
+  }
+
+  &--confirm {
+    background: $mint-green;
+    color: #000;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(213, 233, 199, 0.2);
+    &:hover { filter: brightness(1.07); transform: translateY(-1px); }
+    &:active { transform: scale(0.98); }
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(213, 233, 199, 0.3);
+  }
+}
+
+// ── Bottom Navigation Bar ──────────────────────────────────────────────────
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: $bg-card;
+  border-top: 1.5px solid $border-color;
+  display: flex;
+  padding: 10px 0 26px;
+}
+
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 12px;           // Up from 11px
+  font-weight: 600;
+  font-family: $font-main;
+  cursor: pointer;
+  padding: 10px 0;
+  min-height: 56px;          // WCAG touch target for nav
+  transition: color 0.18s;
+
+  ion-icon { font-size: 24px; } // Bigger icons
+
+  &:hover   { color: $lilac-accent; }
+  &--active {
+    color: $lilac-active;
+    ion-icon { color: $lilac-active; }
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 -2px 0 $lilac-accent;
+  }
+}
+
+// ── Ionic Header ──────────────────────────────────────────────────────────
+ion-header ion-toolbar {
+  --background: #{$bg-black};
+  --border-color: transparent;
+}
+
+// ── Ion Tab Bar (fallback) ────────────────────────────────────────────────
+.ms-tab-bar {
+  --background: #{$bg-card};
+  --border-color: #{$border-color};
+
+  ion-tab-button {
+    --color: #555;
+    --color-selected: #{$lilac-active};
+    font-family: $font-main;
+    ion-label { font-size: 12px; font-weight: 600; }
+  }
+}
